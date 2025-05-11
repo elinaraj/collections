@@ -8,11 +8,11 @@
       "condition": "New",
       "price": 5,
       "tags": [
-        "Essential Oil",
-        "Diffuser"
+        "[1] Diffuser",
+        "[2] Essential Oil"
       ],
       "marketplaceLink": "https://www.facebook.com/marketplace/item/1946573826103667",
-      "description": "https://www.facebook.com/marketplace/item/1946573826103667",
+      "description": "Lavender Essential Oil - 10ml",
       "images": [
         "resources/images/LavenderEssentialoil.jpg"
       ]
@@ -25,35 +25,744 @@
       "condition": "New",
       "price": 28,
       "tags": [
-        "3 Lenses (Front",
-        "Interior",
-        "Rear)",
-        "HD",
-        "32GB Memory Card"
+        "[1] 3 Cameras",
+        "[2] 32GB Memory Card",
+        "[3] HD Recording",
+        "[4A] Front Camera",
+        "[4B] Interior Camera",
+        "[4C] Rear Camera"
       ],
       "marketplaceLink": "https://www.facebook.com/marketplace/item/1807913350064321",
-      "description": "3 Lenses HD car dashcam(Front, Interior, Rear) with 32GB micro sd card, New sealed box\n\nhttps://www.facebook.com/marketplace/item/1807913350064321",
+      "description": "3 Lenses HD car dashcam(Front, Interior, Rear) with 32GB micro sd card, New sealed box.",
       "images": [
         "resources/images/3LensDashCam32GB1.jpg"
       ]
     },
     {
       "id": "p003",
-      "title": "Bedsheet - 3 Pieces - King Size",
+      "title": "Bedsheet Set - 3 Pieces - King Size",
       "category": "Beddings",
       "status": "Available",
       "condition": "New",
       "price": 25,
       "tags": [
-        "Bedsheet",
-        "3pcs",
-        "King Size"
+        "[1] Bedsheet Set",
+        "[2] King Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5AA] 1 Fitted Sheet",
+        "[5B] 2 Pillowcases"
       ],
       "marketplaceLink": "https://www.facebook.com/marketplace/item/1381122876268408",
-      "description": "New 3 pieces King size Bedsheet/ Bedding set\n\nhttps://www.facebook.com/marketplace/item/1381122876268408",
+      "description": "New 3 pieces King size Bedsheet/ Bedding set.",
       "images": [
         "resources/images/Bedsheet1.jpg",
         "resources/images/Bedsheet2.jpg"
+      ]
+    },
+    {
+      "id": "p004",
+      "title": "Duvet Cover Set - 3 Pieces - Queen Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 35,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] Queen Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1010917617835207",
+      "description": "3 pieces New Queen size Duvet cover set, soft pink tulips on white.",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1010917617835207-0-1746996740.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1010917617835207-1-1746996740.jpg"
+      ]
+    },
+    {
+      "id": "p005",
+      "title": "Duvet Cover Set - 3 Pieces - Queen Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 32,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] Queen Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1359697785240993",
+      "description": "3 pieces Queen Duvet Cover set\n",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1359697785240993-1-1746997846.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1359697785240993-0-1746997846.jpg"
+      ]
+    },
+    {
+      "id": "p006",
+      "title": "Duvet Cover Set - 3 Pieces - Queen Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 32,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] Queen Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1440399806942994",
+      "description": "3 pieces Queen Duvet cover set, zipper closure(New in package)",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1440399806942994-5-1746998096.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1440399806942994-2-1746998096.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1440399806942994-6-1746998096.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1440399806942994-1-1746998096.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1440399806942994-0-1746998096.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1440399806942994-7-1746998096.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1440399806942994-8-1746998096.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1440399806942994-4-1746998096.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1440399806942994-3-1746998096.jpg"
+      ]
+    },
+    {
+      "id": "p007",
+      "title": "Duvet Cover Set - 3 Pieces - Queen Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 30,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] Queen Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/575129198949783",
+      "description": "3 pieces Queen Duvet Cover set.",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---queen-size-575129198949783-0-1746998658.jpg"
+      ]
+    },
+    {
+      "id": "p008",
+      "title": "Duvet Cover Set - 3 Pieces - Queen Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 38,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] Queen Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1338042980786412",
+      "description": "Gorgeous 3 pieces Queen size Duvet cover sets incase, New in package.",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1338042980786412-1-1746998752.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1338042980786412-2-1746998752.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1338042980786412-2-1746998816.jpg"
+      ]
+    },
+    {
+      "id": "p009",
+      "title": "Fleece Blanket - Full Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 35,
+      "tags": [
+        "[1] Fleece Blanket",
+        "[2] Full Size",
+        "[3] Fleece"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1905807680164208",
+      "description": "Fleece blanket, Full/ Double size, New in package.",
+      "images": [
+        "resources/images/fleece-blanket---full-size-1905807680164208-0-1747000388.jpg",
+        "resources/images/fleece-blanket---full-size-1905807680164208-1-1747000392.jpg"
+      ]
+    },
+    {
+      "id": "p010",
+      "title": "Duvet Cover Set - 3 Pieces - King Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 50,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] King Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1353774749244860",
+      "description": "3 pieces King size Duvet Cover set, Gorgeous design, Light Grey color, New in package",
+      "images": [
+        "resources/images/-no-marketplace-link-0-1747000612.jpg",
+        "resources/images/-no-marketplace-link-1-1747000616.jpg"
+      ]
+    },
+    {
+      "id": "p011",
+      "title": "Fleece Blanket - Full Size - Beige Color",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 35,
+      "tags": [
+        "[1] Fleece Blanket",
+        "[2] Full Size",
+        "[3] Fleece"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1249785736542414",
+      "description": "Textured Fleece Blanket, New in package(Full/Double size),\n\n2 colors available:\n* Beige\n* Blush Pink",
+      "images": [
+        "resources/images/-no-marketplace-link-0-1747000725.jpg",
+        "resources/images/-no-marketplace-link-1-1747000729.jpg"
+      ]
+    },
+    {
+      "id": "p012",
+      "title": "Duvet Cover Set - 3 Pieces - Queen Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 30,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] Queen Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1314669886266077",
+      "description": "3 pieces New Queen size Duvet Cover set, makes perfect Mother’s Day present",
+      "images": [
+        "resources/images/-no-marketplace-link-0-1747001339.jpg",
+        "resources/images/-no-marketplace-link-1-1747001345.jpg",
+        "resources/images/-no-marketplace-link-2-1747001349.jpg",
+        "resources/images/-no-marketplace-link-3-1747001353.jpg"
+      ]
+    },
+    {
+      "id": "p013",
+      "title": "Summer Quilt Cooling Blanket - Full Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 35,
+      "tags": [
+        "[2] Full Size",
+        "[1] Summer Cooling Blanket"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/708733678241380",
+      "description": "New Thin Summer Quilt/ Cooling Blanket, Size- Double/Full, New in package",
+      "images": [
+        "resources/images/summer-quilt-cooling-blanket---full-size-708733678241380-0-1747001656.jpg",
+        "resources/images/summer-quilt-cooling-blanket---full-size-708733678241380-1-1747001659.jpg",
+        "resources/images/summer-quilt-cooling-blanket---full-size-708733678241380-2-1747001664.jpg"
+      ]
+    },
+    {
+      "id": "p014",
+      "title": "Duvet Cover Set - 3 Pieces - Queen Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 30,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] Queen Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/2414453832250611",
+      "description": "3 pieces Queen Size Duvet Cover set, Beige color, textured print",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---queen-size-no-marketplace-link-0-1747001751.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-no-marketplace-link-1-1747001755.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-no-marketplace-link-2-1747001759.jpg"
+      ]
+    },
+    {
+      "id": "p015",
+      "title": "Duvet Cover Set - 3 Pieces - King Size - Reversible",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 40,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] King Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1375869816994082",
+      "description": "3 pieces King size Reversible Duvet Cover set, shades of Grey",
+      "images": [
+        "resources/images/-no-marketplace-link-1-1747001895.jpg",
+        "resources/images/-no-marketplace-link-0-1747001895.jpg"
+      ]
+    },
+    {
+      "id": "p016",
+      "title": "Duvet Cover Set - 3 Pieces - King Size - Reversible",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 40,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] King Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/2097127937474955",
+      "description": "New Gorgeous King size Reversible Duvet Cover set, New",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---king-size---reversible-2097127937474955-0-1747002037.jpg"
+      ]
+    },
+    {
+      "id": "p017",
+      "title": "Duvet Cover Set - 3 Pieces - Queen Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 0,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] Queen Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1724453338104708",
+      "description": "3 pieces New Queen size Duvet Cover set, New",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---queen-size-no-marketplace-link-0-1747002094.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-no-marketplace-link-1-1747002098.jpg"
+      ]
+    },
+    {
+      "id": "p018",
+      "title": "Duvet Cover Set - 3 Pieces - King Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 40,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] King Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/2437526393273573",
+      "description": "Solid Grey King size Duvet Cover set, New in package",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---king-size-2437526393273573-0-1747002201.jpg",
+        "resources/images/duvet-cover-set---3-pieces---king-size-2437526393273573-1-1747002206.jpg"
+      ]
+    },
+    {
+      "id": "p019",
+      "title": "Summer Quilt Cooling Blanket - Full Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 35,
+      "tags": [
+        "[1] Summer Cooling Blanket",
+        "[2] Full Size"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/858883773106404",
+      "description": "Gorgeous Summer Quilt/ Cooling Blanket, yellow flowers Full/ Double Blanket, New in package",
+      "images": [
+        "resources/images/summer-quilt-cooling-blanket---full-size-858883773106404-0-1747002308.jpg",
+        "resources/images/summer-quilt-cooling-blanket---full-size-858883773106404-1-1747002312.jpg"
+      ]
+    },
+    {
+      "id": "p020",
+      "title": "Duvet Cover Set - 3 Pieces - Queen Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 40,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] Queen Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1823737621759871",
+      "description": "Gorgeous 3 pieces Queen size Duvet Cover Set, Light Grey color, New in package",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1823737621759871-0-1747002456.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1823737621759871-1-1747002460.jpg"
+      ]
+    },
+    {
+      "id": "p021",
+      "title": "Duvet Cover Set - 3 Pieces - King Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 35,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] King Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1748294832567303",
+      "description": "3 pieces New King size Duvet Cover set, Mother’s Day Gift",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---king-size-1748294832567303-0-1747002547.jpg",
+        "resources/images/duvet-cover-set---3-pieces---king-size-1748294832567303-1-1747002552.jpg"
+      ]
+    },
+    {
+      "id": "p022",
+      "title": "Duvet Cover Set - 3 Pieces - Queen Size - Reversible",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 35,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] Queen Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/722542573535635",
+      "description": "3 pieces New Queen size Reversible Duvet Cover set",
+      "images": [
+        "resources/images/-no-marketplace-link-0-1747002589.jpg",
+        "resources/images/-no-marketplace-link-1-1747002594.jpg"
+      ]
+    },
+    {
+      "id": "p023",
+      "title": "Duvet Cover Set - 3 Pieces - Queen Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 35,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] Queen Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1196336085362194",
+      "description": "3 pieces New Queen Duvet Cover set, New in package, makes a great Mother’s Day present",
+      "images": [
+        "resources/images/-no-marketplace-link-0-1747002691.jpg",
+        "resources/images/-no-marketplace-link-1-1747002695.jpg",
+        "resources/images/-no-marketplace-link-2-1747002699.jpg"
+      ]
+    },
+    {
+      "id": "p024",
+      "title": "Bedsheet Set - 4 Pieces - Queen Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 40,
+      "tags": [
+        "[1] Bedsheet Set",
+        "[2] Queen Size",
+        "[3] Polyester",
+        "[5AA] 1 Fitted Sheet",
+        "[5B] 2 Pillowcases",
+        "[4] 4pcs",
+        "[5AB] 1 Flat Sheet"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1191759382148742",
+      "description": "4 pieces New Queen Bedding set(1 fitted sheet, 1 flat sheet, 2 pillowcases)",
+      "images": [
+        "resources/images/bedsheet-set---4-pieces---queen-size-1191759382148742-0-1747003165.jpg",
+        "resources/images/bedsheet-set---4-pieces---queen-size-1191759382148742-1-1747003170.jpg"
+      ]
+    },
+    {
+      "id": "p025",
+      "title": "Duvet Cover Set - 3 Pieces - Queen Size - Reversible",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 35,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] Queen Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/981988677064632",
+      "description": "3 pieces Queen Reversible Duvet Cover set, New, perfect Mother’s Day present",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---queen-size---reversible-981988677064632-0-1747003414.jpg"
+      ]
+    },
+    {
+      "id": "p026",
+      "title": "Duvet Cover Set - 3 Pieces - Queen Size - Reversible - 100% Cotton",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 55,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] Queen Size",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/657349467306375",
+      "description": "100% Cotton Reversible Queen size Duvet Cover set, New in package, Perfect Mother's Day present",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---queen-size---reversible---100-cotton-657349467306375-0-1747003606.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size---reversible---100-cotton-657349467306375-1-1747003609.jpg"
+      ]
+    },
+    {
+      "id": "p027",
+      "title": "Duvet Cover Set - 3 Pieces - Queen Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 35,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] Queen Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/678906711559247",
+      "description": "3 pieces New Queen size Duvet Cover set, New in package, Perfect Mother's Day present",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---queen-size-678906711559247-0-1747004054.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-678906711559247-1-1747004058.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-678906711559247-2-1747004062.jpg"
+      ]
+    },
+    {
+      "id": "p028",
+      "title": "Duvet Cover Set - 3 Pieces - King Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 40,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] King Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/992299753063857",
+      "description": "Christmas King size New Duvet Cover set, New in package",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---king-size-992299753063857-0-1747004686.jpg",
+        "resources/images/duvet-cover-set---3-pieces---king-size-992299753063857-1-1747004690.jpg",
+        "resources/images/duvet-cover-set---3-pieces---king-size-992299753063857-2-1747004694.jpg"
+      ]
+    },
+    {
+      "id": "p029",
+      "title": "Duvet Cover Set - 3 Pieces - King / Queen Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 35,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] King Size",
+        "[2] Queen Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/985781326957734",
+      "description": "3 pieces Queen/ King Duvet Cover set, New in package, Perfect Mother's Day present.\n\nQueen set: $35\nKing set: $40\n",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---king-queen-size-985781326957734-0-1747004885.jpg",
+        "resources/images/duvet-cover-set---3-pieces---king-queen-size-985781326957734-1-1747004888.jpg",
+        "resources/images/duvet-cover-set---3-pieces---king-queen-size-985781326957734-2-1747004893.jpg",
+        "resources/images/duvet-cover-set---3-pieces---king-queen-size-985781326957734-3-1747004897.jpg"
+      ]
+    },
+    {
+      "id": "p030",
+      "title": "Duvet Cover Set - 3 Pieces - Queen Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 45,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] Queen Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1391316238875543",
+      "description": "Gorgeous New Queen Duvet Cover set",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1391316238875543-0-1747004995.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1391316238875543-1-1747004999.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1391316238875543-2-1747005003.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1391316238875543-3-1747005006.jpg"
+      ]
+    },
+    {
+      "id": "p031",
+      "title": "Duvet Cover Set - 3 Pieces - Queen Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 35,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] Queen Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1231960698287778",
+      "description": "3 pieces Queen Duvet Cover set, New",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1231960698287778-0-1747005081.jpg",
+        "resources/images/duvet-cover-set---3-pieces---queen-size-1231960698287778-1-1747005086.jpg"
+      ]
+    },
+    {
+      "id": "p032",
+      "title": "Duvet Cover Set - 3 Pieces - King / Queen Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 35,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] King Size",
+        "[2] Queen Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/704750195363519",
+      "description": "3 pieces Queen/ King Duvet Cover set, New in package, Perfect Mother's Day present\n\nQueen: $35\nKing: $40",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---king-queen-size-704750195363519-0-1747005206.jpg",
+        "resources/images/duvet-cover-set---3-pieces---king-queen-size-704750195363519-1-1747005210.jpg"
+      ]
+    },
+    {
+      "id": "p033",
+      "title": "Summer Quilt Cooling Blanket - Full Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 35,
+      "tags": [
+        "[1] Summer Cooling Blanket",
+        "[2] Full Size"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1050191273626169",
+      "description": "Summer Cooling Blanket, New in package, Full/ Double size(80”x90”), Perfect Mother's Day present",
+      "images": [
+        "resources/images/summer-quilt-cooling-blanket---full-size-1050191273626169-0-1747005389.jpg",
+        "resources/images/summer-quilt-cooling-blanket---full-size-1050191273626169-1-1747005392.jpg",
+        "resources/images/summer-quilt-cooling-blanket---full-size-1050191273626169-2-1747005407.jpg"
+      ]
+    },
+    {
+      "id": "p034",
+      "title": "Duvet Cover Set - 3 Pieces - King Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 40,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] King Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/711960428025816",
+      "description": "3 pieces King size Duvet Cover set, New in package, Perfect Mother's Day present",
+      "images": [
+        "resources/images/-no-marketplace-link-0-1747005560.jpg",
+        "resources/images/-no-marketplace-link-1-1747005564.jpg",
+        "resources/images/-no-marketplace-link-2-1747005568.jpg"
+      ]
+    },
+    {
+      "id": "p035",
+      "title": "Duvet Cover Set - 3 Pieces - King Size - Reversible",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 40,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] King Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/671576778962589",
+      "description": "3 pieces King size Duvet Cover set, New in package, Perfect Mother's Day present",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---king-size---reversible-671576778962589-0-1747005820.jpg"
       ]
     }
   ]
