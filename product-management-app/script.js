@@ -203,10 +203,36 @@ function displayProductImages(product) {
     }
 }
 
+// Helper function to sanitize product title for filename
+function sanitizeFilename(title) {
+    // Remove special characters and replace spaces with hyphens
+    return title
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
+        .replace(/\s+/g, '-');         // Replace spaces with hyphens
+}
+
+// Helper function to extract marketplace item ID from URL
+function extractMarketplaceItemId(url) {
+    if (!url) return 'no-marketplace-link';
+    
+    try {
+        // Match the item ID in Facebook Marketplace URLs
+        const match = url.match(/marketplace\/item\/(\d+)/i);
+        return match ? match[1] : 'no-marketplace-link';
+    } catch (error) {
+        console.error('Error extracting marketplace item ID:', error);
+        return 'no-marketplace-link';
+    }
+}
+
 // Handle image upload
 function handleImageUpload(e) {
     const files = e.target.files;
     const productId = document.getElementById('edit-id').value;
+    const productTitle = document.getElementById('edit-title').value;
+    const marketplaceLink = document.getElementById('edit-marketplace-link').value;
     
     if (!files || files.length === 0) return;
     
@@ -221,8 +247,14 @@ function handleImageUpload(e) {
         editedImages[productId] = product ? [...product.images] : [];
     }
     
+    // Get the current image count for this product
+    const currentImageCount = editedImages[productId].length;
+    
+    // Extract marketplace item ID
+    const marketplaceItemId = extractMarketplaceItemId(marketplaceLink);
+    
     // Process each uploaded file
-    Array.from(files).forEach(file => {
+    Array.from(files).forEach((file, index) => {
         const reader = new FileReader();
         
         reader.onload = function(event) {
@@ -230,7 +262,17 @@ function handleImageUpload(e) {
             const previewDiv = document.createElement('div');
             previewDiv.className = 'preview-image';
             
-            const imagePath = `resources/images/${file.name}`;
+            // Generate dynamic filename based on product title, marketplace item ID, image count, and timestamp
+            const sanitizedTitle = sanitizeFilename(productTitle);
+            const timestamp = Math.floor(Date.now() / 1000); // Current timestamp in seconds
+            const imageIndex = currentImageCount + index;
+            
+            // Get file extension from original file
+            const fileExtension = file.name.split('.').pop().toLowerCase();
+            
+            // Construct the new filename
+            const newFilename = `${sanitizedTitle}-${marketplaceItemId}-${imageIndex}-${timestamp}.${fileExtension}`;
+            const imagePath = `resources/images/${newFilename}`;
             
             previewDiv.innerHTML = `
                 <img src="${event.target.result}" alt="New product image">
@@ -319,40 +361,42 @@ function saveProductChanges() {
 function uploadProductImages(productId) {
     if (!uploadedFiles[productId] || uploadedFiles[productId].length === 0) return;
     
-    // Use FormData to upload the files to the server
-    const formData = new FormData();
-    uploadedFiles[productId].forEach(upload => {
-        formData.append('files', upload.file);
-    });
-    
-    // Upload the images
     console.log(`Uploading ${uploadedFiles[productId].length} images for product ${productId}`);
     
+    // In a browser environment, we need to use a server-side endpoint to handle file saving
+    // as browsers cannot directly write to the filesystem for security reasons
+    
+    // Create a FormData object to send files to the server
+    const formData = new FormData();
+    
+    // Add each file and its target path to the form data
+    uploadedFiles[productId].forEach(upload => {
+        formData.append('files', upload.file);
+        formData.append('paths', upload.path);
+    });
+    
+    // Send the files to the server
     fetch('/api/upload-images', {
         method: 'POST',
         body: formData
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
     .then(data => {
         console.log('Upload successful:', data);
+        alert('Images uploaded successfully!');
     })
     .catch(error => {
         console.error('Error uploading images:', error);
+        alert(`Failed to upload images: ${error.message}`);
     });
     
-    // In a real application, you would use something like:
-    // const formData = new FormData();
-    // uploadedFiles[productId].forEach(upload => {
-    //    formData.append('files', upload.file);
-    //    formData.append('paths', upload.path);
-    // });
-    // await fetch('/api/upload-images', { method: 'POST', body: formData });
-    
-    // Clear the uploaded files after uploading
+    // Clear the uploaded files after attempting upload
     uploadedFiles[productId] = [];
-    
-    // In a real application with file access, you would ensure the files exist
-    // For now, we assume the uploads worked and the files will be accessible
 }
 
 // Delete a product

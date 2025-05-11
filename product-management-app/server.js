@@ -5,16 +5,8 @@ const fs = require('fs');
 const app = express();
 const port = 3000;
 
-// Set up storage for uploaded files
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, 'data/er/v73/resources/images'));
-    },
-    filename: function (req, file, cb) {
-        // Keep original filename
-        cb(null, file.originalname);
-    }
-});
+// We'll use multer's memory storage initially so we can process the files ourselves
+const storage = multer.memoryStorage();
 
 const upload = multer({ storage: storage });
 
@@ -75,18 +67,69 @@ app.post('/api/save-products', (req, res) => {
 // API endpoint to upload images
 app.post('/api/upload-images', upload.array('files'), (req, res) => {
     try {
-        // Files are already saved by multer
-        const uploadedFiles = req.files.map(file => ({
-            originalName: file.originalname,
-            // Keep the path format consistent with the structure in products.json
-            path: `resources/images/${file.originalname}`
-        }));
+        const paths = Array.isArray(req.body.paths) ? req.body.paths : [req.body.paths].filter(Boolean);
+        console.log('Received paths:', paths);
+        console.log('Received files:', req.files.map(f => f.originalname));
+
+        // Create directory if it doesn't exist
+        const imagesDir = path.join(__dirname, 'data/er/v73/resources/images');
+        if (!fs.existsSync(imagesDir)) {
+            fs.mkdirSync(imagesDir, { recursive: true });
+        }
+
+        const uploadedFiles = [];
+
+        // Process each file using its corresponding path
+        req.files.forEach((file, index) => {
+            const filePath = paths[index];
+            
+            if (filePath) {
+                // Extract the filename portion from the path
+                const filename = path.basename(filePath);
+                const fullDestPath = path.join(__dirname, 'data/er/v73/resources/images', filename);
+                const destDir = path.dirname(fullDestPath);
+                
+                // Ensure the destination directory exists
+                if (!fs.existsSync(destDir)) {
+                    fs.mkdirSync(destDir, { recursive: true });
+                }
+                
+                // Write the file to the destination
+                fs.writeFileSync(fullDestPath, file.buffer);
+                
+                uploadedFiles.push({
+                    originalName: file.originalname,
+                    newName: filename,
+                    path: `resources/images/${filename}`
+                });
+                
+                console.log(`File saved: ${fullDestPath}`);
+            } else {
+                // Fallback to using original filename in default location
+                const filename = file.originalname;
+                const destPath = path.join(imagesDir, filename);
+                
+                fs.writeFileSync(destPath, file.buffer);
+                
+                uploadedFiles.push({
+                    originalName: file.originalname,
+                    newName: filename,
+                    path: `resources/images/${filename}`
+                });
+                
+                console.log(`File saved (fallback): ${destPath}`);
+            }
+        });
         
-        console.log('Files uploaded:', uploadedFiles);
+        console.log('Successfully processed files:', uploadedFiles);
         res.json({ success: true, message: 'Files uploaded successfully', files: uploadedFiles });
     } catch (error) {
         console.error('Error uploading files:', error);
-        res.status(500).json({ success: false, message: 'Failed to upload files' });
+        res.status(500).json({ 
+            success: false, 
+            message: 'Failed to upload files', 
+            error: error.toString() 
+        });
     }
 });
 
