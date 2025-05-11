@@ -140,12 +140,68 @@ label {
     font-weight: bold;
 }
 
-input, select, textarea {
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="url"],
+.form-group textarea,
+.form-group select {
     width: 100%;
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Multi-select dropdown styles */
+.form-group select[multiple] {
+    height: auto;
+    min-height: 100px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 4px;
+}
+
+.form-group select[multiple] option {
+    padding: 4px;
+    margin: 2px 0;
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 3px;
+}
+
+.form-group select[multiple] option:checked {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Input group styles for category and tag addition */
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-group select {
+    flex-grow: 1;
+}
+
+.input-group .new-input {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.input-group .add-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.input-group .add-btn:hover {
+    background-color: #218838;
 }
 
 textarea {

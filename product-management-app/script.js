@@ -89,6 +89,75 @@ function setupEventListeners() {
         openEditModal();
     });
     
+    // Add new category button
+    const addCategoryBtn = document.getElementById('add-category-btn');
+    const newCategoryInput = document.getElementById('edit-new-category');
+    const categorySelect = document.getElementById('edit-category');
+    
+    addCategoryBtn.addEventListener('click', () => {
+        const newCategory = ProductMetadata.addNewCategory(products, newCategoryInput.value);
+        
+        if (newCategory) {
+            // Create a new option in the category select
+            const newOption = document.createElement('option');
+            newOption.value = newCategory;
+            newOption.textContent = newCategory;
+            categorySelect.appendChild(newOption);
+            
+            // Select the new category
+            categorySelect.value = newCategory;
+            
+            // Clear the input
+            newCategoryInput.value = '';
+            
+            // Trigger category change to update tags
+            categorySelect.dispatchEvent(new Event('change'));
+        } else {
+            alert('Category already exists or is invalid.');
+        }
+    });
+    
+    // Add new tag button
+    const addTagBtn = document.getElementById('add-tag-btn');
+    const newTagInput = document.getElementById('edit-new-tag');
+    const tagsSelect = document.getElementById('edit-tags');
+    
+    addTagBtn.addEventListener('click', () => {
+        const newTag = ProductMetadata.addNewTag(products, newTagInput.value);
+        
+        if (newTag) {
+            // Create a new option in the tags select
+            const newOption = document.createElement('option');
+            newOption.value = newTag;
+            newOption.textContent = newTag;
+            tagsSelect.appendChild(newOption);
+            
+            // Select the new tag
+            newOption.selected = true;
+            
+            // Clear the input
+            newTagInput.value = '';
+        } else {
+            alert('Tag already exists or is invalid.');
+        }
+    });
+    
+    // Allow adding tags by pressing Enter
+    newTagInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            addTagBtn.click();
+            e.preventDefault();
+        }
+    });
+    
+    // Allow adding category by pressing Enter
+    newCategoryInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            addCategoryBtn.click();
+            e.preventDefault();
+        }
+    });
+    
     // Save all changes button
     saveAllBtn.addEventListener('click', saveAllChanges);
     
@@ -130,18 +199,80 @@ function setupEventListeners() {
     imageUpload.addEventListener('change', handleImageUpload);
 }
 
+// Populate category dropdown
+function populateCategoryDropdown() {
+    const categorySelect = document.getElementById('edit-category');
+    const categories = ProductMetadata.extractUniqueCategories(products);
+    
+    // Clear existing options except the first one
+    while (categorySelect.options.length > 1) {
+        categorySelect.remove(1);
+    }
+    
+    // Add categories
+    categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category;
+        option.textContent = category;
+        categorySelect.appendChild(option);
+    });
+}
+
+// Populate tags dropdown
+function populateTagsDropdown(selectedCategory = null) {
+    const tagsSelect = document.getElementById('edit-tags');
+    let tags = [];
+    
+    // Clear existing options
+    tagsSelect.innerHTML = '';
+    
+    // Get tags based on category selection
+    if (selectedCategory) {
+        tags = ProductMetadata.getTagsByCategory(products, selectedCategory);
+    } else {
+        tags = ProductMetadata.extractUniqueTags(products);
+    }
+    
+    // Add tags
+    tags.forEach(tag => {
+        const option = document.createElement('option');
+        option.value = tag;
+        option.textContent = tag;
+        tagsSelect.appendChild(option);
+    });
+}
+
 // Open edit modal
 function openEditModal(productId = null) {
     const isNewProduct = !productId;
     const product = isNewProduct ? createNewProduct() : products.find(p => p.id === productId);
     
+    // Populate dropdowns first
+    populateCategoryDropdown();
+    populateTagsDropdown();
+    
+    const categorySelect = document.getElementById('edit-category');
+    const tagsSelect = document.getElementById('edit-tags');
+    
     document.getElementById('edit-id').value = product.id;
     document.getElementById('edit-title').value = product.title;
-    document.getElementById('edit-category').value = product.category;
+    categorySelect.value = product.category || '';
     document.getElementById('edit-status').value = product.status;
     document.getElementById('edit-condition').value = product.condition;
     document.getElementById('edit-price').value = product.price;
-    document.getElementById('edit-tags').value = product.tags.join(', ');
+    
+    // Set selected tags
+    if (product.category) {
+        populateTagsDropdown(product.category);
+    }
+    
+    // Select the tags for this product
+    if (product.tags) {
+        Array.from(tagsSelect.options).forEach(option => {
+            option.selected = product.tags.includes(option.value);
+        });
+    }
+    
     document.getElementById('edit-marketplace-link').value = product.marketplaceLink || '';
     document.getElementById('edit-description').value = product.description;
     
@@ -150,6 +281,11 @@ function openEditModal(productId = null) {
     
     // Display current images
     displayProductImages(product);
+    
+    // Add event listener for category change to update tags
+    categorySelect.addEventListener('change', function() {
+        populateTagsDropdown(this.value);
+    });
     
     // Show the modal
     editModal.style.display = 'block';
@@ -326,7 +462,7 @@ function saveProductChanges() {
         status: document.getElementById('edit-status').value,
         condition: document.getElementById('edit-condition').value,
         price: parseFloat(document.getElementById('edit-price').value),
-        tags: document.getElementById('edit-tags').value.split(',').map(tag => tag.trim()).filter(tag => tag !== ''),
+        tags: Array.from(document.getElementById('edit-tags').selectedOptions).map(option => option.value),
         marketplaceLink: document.getElementById('edit-marketplace-link').value.trim() || null,
         description: document.getElementById('edit-description').value,
         images: [] // Will be populated below
