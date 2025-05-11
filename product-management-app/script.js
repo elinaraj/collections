@@ -7,7 +7,7 @@ let uploadedFiles = {};
 const productsTable = document.getElementById('products-table');
 const productsBody = document.getElementById('products-body');
 const addProductBtn = document.getElementById('add-product');
-const saveAllBtn = document.getElementById('save-all');
+// Removed saveAllBtn declaration
 const editModal = document.getElementById('edit-modal');
 const editForm = document.getElementById('edit-form');
 const closeModal = document.querySelector('.close');
@@ -158,8 +158,7 @@ function setupEventListeners() {
         }
     });
     
-    // Save all changes button
-    saveAllBtn.addEventListener('click', saveAllChanges);
+    // Save all changes button removed
     
     // Edit and delete buttons (using event delegation)
     productsBody.addEventListener('click', (e) => {
@@ -488,9 +487,43 @@ function saveProductChanges() {
     // Upload any new images
     uploadProductImages(productId);
     
+    // Save changes to server immediately
+    saveProductsToServer(products);
+    
     // Close modal and re-render table
     editModal.style.display = 'none';
     renderProductsTable();
+}
+
+// Save products to server
+function saveProductsToServer(productsToSave) {
+    fetch('/api/save-products', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ products: productsToSave })
+    })
+    .then(response => response.json())
+    .then(result => {
+        console.log('Save result:', result);
+        if (result.path) {
+            console.log('Saved to path:', result.path);
+        }
+        
+        // Show message about archived images if any
+        let message = 'Changes saved successfully!';
+        if (result.archivedImages && result.archivedImages > 0) {
+            message += ` ${result.archivedImages} deleted image(s) moved to archive folder.`;
+        }
+        
+        // Only show alert if not triggered by image archiving
+        if (!result.silentSave) {
+            alert(message);
+        }
+    })
+    .catch(error => {
+        console.error('Error saving products:', error);
+        alert('Failed to save changes. Please try again.');
+    });
 }
 
 // Upload product images to the server
@@ -541,43 +574,69 @@ function deleteProduct(productId) {
     
     const index = products.findIndex(p => p.id === productId);
     if (index !== -1) {
-        products.splice(index, 1);
+        // Remove the product from the array
+        const deletedProduct = products.splice(index, 1)[0];
+        
+        // Save changes to server
+        saveProductsToServer(products);
+        
+        // Archive images if any
+        if (deletedProduct.images && deletedProduct.images.length > 0) {
+            archiveProductImages(deletedProduct.images);
+        }
+        
+        // Re-render the table
         renderProductsTable();
     }
 }
 
-// Save all changes to the JSON file
-async function saveAllChanges() {
-    // Prepare the data with the current products array
-    const data = { products };
-    console.log('Saving products data:', data);
-    console.log('Server endpoint: /api/save-products');
+// Archive images of a deleted product
+function archiveProductImages(images) {
+    // Validate input
+    if (!images || images.length === 0) {
+        console.log('No images to archive');
+        return;
+    }
     
-    // Send the data to the server
-    fetch('/api/save-products', {
+    // Create a FormData object to send images to archive
+    const formData = new FormData();
+    
+    // Add each image path to the form data
+    images.forEach(imagePath => {
+        console.log('Preparing to archive image:', imagePath);
+        formData.append('imagePaths', imagePath);
+    });
+    
+    // Send the images to the server for archiving
+    fetch('/api/archive-images', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: formData
     })
-    .then(response => response.json())
+    .then(response => {
+        // Check if the response is OK
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
     .then(result => {
-        console.log('Save result:', result);
-        if (result.path) {
-            console.log('Saved to path:', result.path);
-        }
+        console.log('Images archiving result:', result);
         
-        // Show message about archived images if any
-        let message = 'Products saved successfully!';
-        if (result.archivedImages && result.archivedImages > 0) {
-            message += ` ${result.archivedImages} deleted image(s) moved to archive folder.`;
+        // Notify user about archived images
+        if (result.archivedCount > 0) {
+            alert(`${result.archivedCount} image(s) moved to archive folder.`);
+        } else {
+            console.warn('No images were archived.');
         }
-        
-        alert(message);
     })
     .catch(error => {
-        console.error('Error saving products:', error);
-        alert('Failed to save products. Please try again.');
+        console.error('Detailed error archiving images:', error);
+        
+        // More informative error message
+        alert(`Failed to archive product images: ${error.message}`);
     });
 }
+
+// Removed saveAllChanges function
 
 // End of script.js

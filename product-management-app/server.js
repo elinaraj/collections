@@ -11,14 +11,15 @@ const storage = multer.memoryStorage();
 
 const upload = multer({ storage: storage });
 
-// Middleware to parse JSON bodies
+// Middleware to parse JSON bodies and form data
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Serve static files from the current directory
 app.use(express.static(__dirname));
 
-// Serve files from the resources directory directly
-app.use('/resources', express.static(constants.RESOURCES_DIR));
+// Serve files from the data/er/v73 directory directly
+app.use('/resources', express.static(path.join(__dirname, 'data/er/v73/resources')));
 
 // API endpoint to save the products JSON
 app.post('/api/save-products', (req, res) => {
@@ -27,8 +28,8 @@ app.post('/api/save-products', (req, res) => {
         const productsData = req.body;
         console.log('Received data:', JSON.stringify(productsData).slice(0, 100) + '...');
         
-        // Use the constant for products JSON file path
-        const filePath = constants.PRODUCTS_JSON_FILE;
+        // Create the correct path
+        const filePath = path.join(__dirname, 'data/er/v73/resources/data/products.json');
         console.log('Target file path:', filePath);
         
         // Ensure directory exists
@@ -81,7 +82,7 @@ app.post('/api/save-products', (req, res) => {
             console.log(`Found ${deletedImages.length} deleted images to archive`);
             
             // Ensure archived directory exists
-            const archivedDir = constants.IMAGES_ARCHIVED_DIR;
+            const archivedDir = path.join(__dirname, 'data/er/v73/resources/images/archived');
             if (!fs.existsSync(archivedDir)) {
                 fs.mkdirSync(archivedDir, { recursive: true });
                 console.log(`Created archived directory: ${archivedDir}`);
@@ -95,7 +96,7 @@ app.post('/api/save-products', (req, res) => {
                     const filename = path.basename(imagePath);
                     
                     // Get the source directory (images) and destination directory (archived)
-                    const imagesDir = constants.IMAGES_DIR;
+                    const imagesDir = path.join(__dirname, 'data/er/v73/resources/images');
                     const sourceImagePath = path.join(imagesDir, filename);
                     
                     console.log(`Looking for image at: ${sourceImagePath}`);
@@ -229,6 +230,90 @@ app.post('/api/upload-images', upload.array('files'), (req, res) => {
             success: false, 
             message: 'Failed to upload files', 
             error: error.toString() 
+        });
+    }
+});
+
+// API endpoint to archive images
+app.post('/api/archive-images', (req, res) => {
+    // Log incoming request details
+    console.log('--- API: ARCHIVE IMAGES - START ---');
+    console.log('Received image paths:', req.body.imagePaths);
+    
+    try {
+        // Validate input
+        const imagePaths = req.body.imagePaths;
+        if (!imagePaths || !Array.isArray(imagePaths) || imagePaths.length === 0) {
+            console.warn('No image paths provided');
+            return res.status(400).json({
+                success: false,
+                message: 'No image paths provided'
+            });
+        }
+        
+        // Ensure archived directory exists
+        const archivedDir = path.join(__dirname, 'data/er/v73/resources/images/archived');
+        if (!fs.existsSync(archivedDir)) {
+            fs.mkdirSync(archivedDir, { recursive: true });
+            console.log(`Created archived directory: ${archivedDir}`);
+        }
+        
+        // Track archived images
+        let archivedCount = 0;
+        const archiveErrors = [];
+        
+        // Archive each image
+        imagePaths.forEach(imagePath => {
+            try {
+                // Construct full path to the image
+                const fullImagePath = path.join(__dirname, imagePath);
+                const filename = path.basename(fullImagePath);
+                const destPath = path.join(archivedDir, filename);
+                
+                console.log(`Attempting to archive: ${fullImagePath}`);
+                
+                // Check if the source file exists
+                if (fs.existsSync(fullImagePath)) {
+                    // Copy the file to archived folder
+                    fs.copyFileSync(fullImagePath, destPath);
+                    
+                    // Delete the original file
+                    fs.unlinkSync(fullImagePath);
+                    
+                    archivedCount++;
+                    console.log(`Successfully archived image: ${imagePath}`);
+                } else {
+                    console.warn(`Image not found, skipping: ${imagePath}`);
+                    archiveErrors.push(`File not found: ${imagePath}`);
+                }
+            } catch (archiveErr) {
+                console.error(`Error archiving image ${imagePath}:`, archiveErr);
+                archiveErrors.push(`Error archiving ${imagePath}: ${archiveErr.message}`);
+            }
+        });
+        
+        // Respond with archiving results
+        console.log('--- API: ARCHIVE IMAGES - RESULT ---');
+        console.log(`Archived ${archivedCount} images`);
+        
+        if (archiveErrors.length > 0) {
+            console.warn('Archive errors:', archiveErrors);
+        }
+        
+        res.json({
+            success: true,
+            message: 'Images archived process completed',
+            archivedCount: archivedCount,
+            errors: archiveErrors
+        });
+    } catch (error) {
+        console.error('--- API: ARCHIVE IMAGES - ERROR ---');
+        console.error('Error archiving images:', error);
+        
+        res.status(500).json({
+            success: false,
+            message: 'Failed to archive images',
+            error: error.toString()
         });
     }
 });
