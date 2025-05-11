@@ -18,8 +18,8 @@ app.use(express.urlencoded({ extended: true }));
 // Serve static files from the current directory
 app.use(express.static(__dirname));
 
-// Serve files from the data/er/v73 directory directly
-app.use('/resources', express.static(path.join(__dirname, 'data/er/v73/resources')));
+// Serve files from the resources directory directly
+app.use('/resources', express.static(constants.RESOURCES_DIR));
 
 // API endpoint to save the products JSON
 app.post('/api/save-products', (req, res) => {
@@ -28,8 +28,8 @@ app.post('/api/save-products', (req, res) => {
         const productsData = req.body;
         console.log('Received data:', JSON.stringify(productsData).slice(0, 100) + '...');
         
-        // Create the correct path
-        const filePath = path.join(__dirname, 'data/er/v73/resources/data/products.json');
+        // Use constants for file paths
+        const filePath = constants.PRODUCTS_JSON_FILE;
         console.log('Target file path:', filePath);
         
         // Ensure directory exists
@@ -82,7 +82,7 @@ app.post('/api/save-products', (req, res) => {
             console.log(`Found ${deletedImages.length} deleted images to archive`);
             
             // Ensure archived directory exists
-            const archivedDir = path.join(__dirname, 'data/er/v73/resources/images/archived');
+            const archivedDir = constants.IMAGES_ARCHIVED_DIR;
             if (!fs.existsSync(archivedDir)) {
                 fs.mkdirSync(archivedDir, { recursive: true });
                 console.log(`Created archived directory: ${archivedDir}`);
@@ -96,7 +96,7 @@ app.post('/api/save-products', (req, res) => {
                     const filename = path.basename(imagePath);
                     
                     // Get the source directory (images) and destination directory (archived)
-                    const imagesDir = path.join(__dirname, 'data/er/v73/resources/images');
+                    const imagesDir = constants.IMAGES_DIR;
                     const sourceImagePath = path.join(imagesDir, filename);
                     
                     console.log(`Looking for image at: ${sourceImagePath}`);
@@ -233,8 +233,6 @@ app.post('/api/upload-images', upload.array('files'), (req, res) => {
         });
     }
 });
-
-// API endpoint to archive images
 app.post('/api/archive-images', (req, res) => {
     // Log incoming request details
     console.log('--- API: ARCHIVE IMAGES - START ---');
@@ -256,7 +254,9 @@ app.post('/api/archive-images', (req, res) => {
         const pathsToArchive = Array.isArray(imagePaths) ? imagePaths : [imagePaths];
         
         // Ensure archived directory exists
-        const archivedDir = path.join(__dirname, 'data/er/v73/resources/images/archived');
+        const archivedDir = constants.IMAGES_ARCHIVED_DIR;
+        const imagesDir = constants.IMAGES_DIR;
+        
         if (!fs.existsSync(archivedDir)) {
             fs.mkdirSync(archivedDir, { recursive: true });
             console.log(`Created archived directory: ${archivedDir}`);
@@ -270,8 +270,8 @@ app.post('/api/archive-images', (req, res) => {
         pathsToArchive.forEach(imagePath => {
             try {
                 // Construct full path to the image
-                const fullImagePath = path.join(__dirname, imagePath);
-                const filename = path.basename(fullImagePath);
+                const fullImagePath = path.join(imagesDir, path.basename(imagePath));
+                const filename = path.basename(imagePath);
                 const destPath = path.join(archivedDir, filename);
                 
                 console.log(`Attempting to archive: ${fullImagePath}`);
