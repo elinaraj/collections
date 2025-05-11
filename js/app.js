@@ -240,6 +240,20 @@ document.addEventListener('DOMContentLoaded', async () => {
             tagsContainer.appendChild(tagElement);
         });
         
+        // Create Marketplace Link button
+        const marketplaceButton = document.createElement('a');
+        marketplaceButton.classList.add('marketplace-link');
+        marketplaceButton.href = product.marketplaceLink || 'https://www.facebook.com/marketplace/profile/100071955871730';
+        marketplaceButton.target = '_blank';
+        marketplaceButton.innerHTML = '<i class="fab fa-facebook"></i> View on Marketplace';
+        
+        // Prevent card click when Marketplace button is clicked
+        marketplaceButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+        
+        productCard.querySelector('.product-info').appendChild(marketplaceButton);
+        
         // Add click event to navigate to detail page
         productCard.addEventListener('click', () => {
             window.location.href = `product-detail.html?id=${product.id}`;
