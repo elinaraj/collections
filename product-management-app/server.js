@@ -2,6 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const constants = require('./constants');
 const app = express();
 const port = 3000;
 
@@ -16,8 +17,8 @@ app.use(express.json());
 // Serve static files from the current directory
 app.use(express.static(__dirname));
 
-// Serve files from the data/er/v73 directory directly
-app.use('/resources', express.static(path.join(__dirname, 'data/er/v73/resources')));
+// Serve files from the resources directory directly
+app.use('/resources', express.static(constants.RESOURCES_DIR));
 
 // API endpoint to save the products JSON
 app.post('/api/save-products', (req, res) => {
@@ -26,8 +27,8 @@ app.post('/api/save-products', (req, res) => {
         const productsData = req.body;
         console.log('Received data:', JSON.stringify(productsData).slice(0, 100) + '...');
         
-        // Create the correct path
-        const filePath = path.join(__dirname, 'data/er/v73/resources/data/products.json');
+        // Use the constant for products JSON file path
+        const filePath = constants.PRODUCTS_JSON_FILE;
         console.log('Target file path:', filePath);
         
         // Ensure directory exists
@@ -80,7 +81,7 @@ app.post('/api/save-products', (req, res) => {
             console.log(`Found ${deletedImages.length} deleted images to archive`);
             
             // Ensure archived directory exists
-            const archivedDir = path.join(__dirname, 'data/er/v73/resources/images/archived');
+            const archivedDir = constants.IMAGES_ARCHIVED_DIR;
             if (!fs.existsSync(archivedDir)) {
                 fs.mkdirSync(archivedDir, { recursive: true });
                 console.log(`Created archived directory: ${archivedDir}`);
@@ -94,7 +95,7 @@ app.post('/api/save-products', (req, res) => {
                     const filename = path.basename(imagePath);
                     
                     // Get the source directory (images) and destination directory (archived)
-                    const imagesDir = path.join(__dirname, 'data/er/v73/resources/images');
+                    const imagesDir = constants.IMAGES_DIR;
                     const sourceImagePath = path.join(imagesDir, filename);
                     
                     console.log(`Looking for image at: ${sourceImagePath}`);
@@ -171,7 +172,7 @@ app.post('/api/upload-images', upload.array('files'), (req, res) => {
         console.log('Received files:', req.files.map(f => f.originalname));
 
         // Create directory if it doesn't exist
-        const imagesDir = path.join(__dirname, 'data/er/v73/resources/images');
+        const imagesDir = constants.IMAGES_DIR;
         if (!fs.existsSync(imagesDir)) {
             fs.mkdirSync(imagesDir, { recursive: true });
         }
@@ -185,7 +186,7 @@ app.post('/api/upload-images', upload.array('files'), (req, res) => {
             if (filePath) {
                 // Extract the filename portion from the path
                 const filename = path.basename(filePath);
-                const fullDestPath = path.join(__dirname, 'data/er/v73/resources/images', filename);
+                const fullDestPath = path.join(constants.IMAGES_DIR, filename);
                 const destDir = path.dirname(fullDestPath);
                 
                 // Ensure the destination directory exists
@@ -235,5 +236,5 @@ app.post('/api/upload-images', upload.array('files'), (req, res) => {
 // Start the server
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
-    console.log(`Images directory: ${path.join(__dirname, 'data/er/v73/resources/images')}`);
+    console.log(`Images directory: ${constants.IMAGES_DIR}`);
 });

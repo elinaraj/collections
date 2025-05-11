@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Load products from JSON file
 async function loadProducts() {
     try {
-        const response = await fetch('data/er/v73/resources/data/products.json');
+        const response = await fetch(PATHS.PRODUCTS_JSON_PATH);
         const data = await response.json();
         products = data.products;
         renderProductsTable();
@@ -49,11 +49,11 @@ function renderProductsTable() {
         // Determine image source or placeholder
         let imageHtml = '';
         if (product.images && product.images.length > 0) {
-            // Ensure the image path is correct for the browser
+            // Use the image path as stored in the product data
             const imagePath = product.images[0];
-            imageHtml = `<img src="${imagePath}" alt="${product.title}" class="product-image" onerror="this.onerror=null;this.src='resources/images/placeholder.jpg';">`;
+            imageHtml = `<img src="${imagePath}" alt="${product.title}" class="product-image" onerror="this.onerror=null;this.src='${PATHS.IMAGES_PATH}placeholder.jpg';">`;
         } else {
-            imageHtml = `<div class="image-placeholder">No Image</div>`;
+            imageHtml = `<div class="image-placeholder">No Image</div>`;  // No path needed for placeholder div
         }
         
         // Format tags
@@ -184,7 +184,7 @@ function displayProductImages(product) {
             const previewDiv = document.createElement('div');
             previewDiv.className = 'preview-image';
             previewDiv.innerHTML = `
-                <img src="${image}" alt="Product image" onerror="this.onerror=null;this.src='resources/images/placeholder.jpg';">
+                <img src="${image}" alt="Product image" onerror="this.onerror=null;this.src='${PATHS.IMAGES_PATH}placeholder.jpg';">
                 <span class="remove-image" data-index="${index}">×</span>
             `;
             imagePreview.appendChild(previewDiv);
@@ -272,7 +272,7 @@ function handleImageUpload(e) {
             
             // Construct the new filename
             const newFilename = `${sanitizedTitle}-${marketplaceItemId}-${imageIndex}-${timestamp}.${fileExtension}`;
-            const imagePath = `resources/images/${newFilename}`;
+            const imagePath = `${PATHS.IMAGES_PATH}${newFilename}`;
             
             previewDiv.innerHTML = `
                 <img src="${event.target.result}" alt="New product image">

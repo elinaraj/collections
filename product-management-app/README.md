@@ -43,6 +43,17 @@ npm install
 npm start
 ```
 
+a. Stop the server:
+```bash
+pkill -f 'node server.js'
+```
+
+b. Stop the server (alternative by port):
+```bash
+lsof -i :3000
+kill 88253
+```
+
 2. Open your browser and go to: `http://localhost:3000`
 
 ## Features
