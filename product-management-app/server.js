@@ -238,18 +238,22 @@ app.post('/api/upload-images', upload.array('files'), (req, res) => {
 app.post('/api/archive-images', (req, res) => {
     // Log incoming request details
     console.log('--- API: ARCHIVE IMAGES - START ---');
+    console.log('Received request body:', req.body);
     console.log('Received image paths:', req.body.imagePaths);
     
     try {
         // Validate input
         const imagePaths = req.body.imagePaths;
-        if (!imagePaths || !Array.isArray(imagePaths) || imagePaths.length === 0) {
-            console.warn('No image paths provided');
+        if (!imagePaths) {
+            console.warn('No image paths provided in request');
             return res.status(400).json({
                 success: false,
                 message: 'No image paths provided'
             });
         }
+        
+        // Ensure imagePaths is an array
+        const pathsToArchive = Array.isArray(imagePaths) ? imagePaths : [imagePaths];
         
         // Ensure archived directory exists
         const archivedDir = path.join(__dirname, 'data/er/v73/resources/images/archived');
@@ -263,7 +267,7 @@ app.post('/api/archive-images', (req, res) => {
         const archiveErrors = [];
         
         // Archive each image
-        imagePaths.forEach(imagePath => {
+        pathsToArchive.forEach(imagePath => {
             try {
                 // Construct full path to the image
                 const fullImagePath = path.join(__dirname, imagePath);
@@ -300,11 +304,13 @@ app.post('/api/archive-images', (req, res) => {
             console.warn('Archive errors:', archiveErrors);
         }
         
+        // Detailed response with archiving results
         res.json({
             success: true,
             message: 'Images archived process completed',
             archivedCount: archivedCount,
-            errors: archiveErrors
+            errors: archiveErrors,
+            requestBody: req.body  // Include original request body for debugging
         });
     } catch (error) {
         console.error('--- API: ARCHIVE IMAGES - ERROR ---');

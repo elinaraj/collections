@@ -593,43 +593,88 @@ function archiveProductImages(images) {
         console.log('No images to archive');
         return;
     }
-    
-    // Create a FormData object to send images to archive
-    const formData = new FormData();
-    
-    // Add each image path to the form data
-    images.forEach(imagePath => {
-        console.log('Preparing to archive image:', imagePath);
-        formData.append('imagePaths', imagePath);
+
+    // Check if images have already been archived
+    const archivedImages = images.filter(imagePath => 
+        imagePath.includes('/archived/') || !imagePath.startsWith('resources/images/')
+    );
+
+    // If all images are already archived, skip the archiving process
+    if (archivedImages.length === images.length) {
+        console.log('All images are already archived');
+        NotificationManager.info('Images already archived.');
+        return;
+    }
+
+    // Prepare the request payload (only non-archived images)
+    const imagesToArchive = images.filter(imagePath => 
+        !imagePath.includes('/archived/') && imagePath.startsWith('resources/images/')
+    );
+
+    // If no images to archive, skip
+    if (imagesToArchive.length === 0) {
+        console.log('No new images to archive');
+        NotificationManager.info('No new images to archive.');
+        return;
+    }
+
+    const payload = {
+        imagePaths: imagesToArchive
+    };
+
+    // Log detailed information about images to archive
+    console.log('Archiving images:', {
+        count: imagesToArchive.length,
+        paths: imagesToArchive
     });
-    
+
     // Send the images to the server for archiving
-    fetch('/api/archive-images', {
+    fetch('http://localhost:3000/api/archive-images', {
         method: 'POST',
-        body: formData
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
     })
     .then(response => {
+        // Log the full response for debugging
+        console.log('Archive images response:', {
+            status: response.status,
+            statusText: response.statusText,
+            headers: Object.fromEntries(response.headers.entries())
+        });
+
         // Check if the response is OK
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            // Try to get more details about the error
+            return response.text().then(errorText => {
+                throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+            });
         }
         return response.json();
     })
     .then(result => {
         console.log('Images archiving result:', result);
-        
+
         // Notify user about archived images
         if (result.archivedCount > 0) {
             NotificationManager.success(`${result.archivedCount} image(s) moved to archive folder.`);
         } else {
-            NotificationManager.info('No images were archived.');
+            NotificationManager.info('No new images to archive.');
         }
     })
     .catch(error => {
         console.error('Detailed error archiving images:', error);
-        
+
         // More informative error message
         NotificationManager.error(`Failed to archive product images: ${error.message}`);
+
+        // Log additional details for debugging
+        console.error('Error details:', {
+            name: error.name,
+            message: error.message,
+            stack: error.stack
+        });
     });
 }
 
