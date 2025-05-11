@@ -41,6 +41,100 @@ app.post('/api/save-products', (req, res) => {
             console.log('Directory already exists');
         }
         
+        // Check for deleted images by comparing with the existing products
+        let existingProducts = [];
+        if (fs.existsSync(filePath)) {
+            try {
+                const existingData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+                existingProducts = existingData.products || [];
+            } catch (err) {
+                console.error('Error reading existing products file:', err);
+                // Continue with empty array if file can't be read
+            }
+        }
+        
+        // Create a map of product images for quick lookup
+        const newProductImages = new Map();
+        productsData.products.forEach(product => {
+            if (product.images && Array.isArray(product.images)) {
+                product.images.forEach(img => {
+                    newProductImages.set(img, true);
+                });
+            }
+        });
+        
+        // Find deleted images
+        const deletedImages = [];
+        existingProducts.forEach(product => {
+            if (product.images && Array.isArray(product.images)) {
+                product.images.forEach(img => {
+                    if (!newProductImages.has(img)) {
+                        deletedImages.push(img);
+                    }
+                });
+            }
+        });
+        
+        // Move deleted images to archived folder
+        if (deletedImages.length > 0) {
+            console.log(`Found ${deletedImages.length} deleted images to archive`);
+            
+            // Ensure archived directory exists
+            const archivedDir = path.join(__dirname, 'data/er/v73/resources/images/archived');
+            if (!fs.existsSync(archivedDir)) {
+                fs.mkdirSync(archivedDir, { recursive: true });
+                console.log(`Created archived directory: ${archivedDir}`);
+            }
+            
+            // Move each deleted image to archived folder
+            deletedImages.forEach(imagePath => {
+                try {
+                    // The paths in the JSON are in format 'resources/images/filename.ext'
+                    // Extract just the filename
+                    const filename = path.basename(imagePath);
+                    
+                    // Get the source directory (images) and destination directory (archived)
+                    const imagesDir = path.join(__dirname, 'data/er/v73/resources/images');
+                    const sourceImagePath = path.join(imagesDir, filename);
+                    
+                    console.log(`Looking for image at: ${sourceImagePath}`);
+                    
+                    // Check if the source file exists
+                    if (fs.existsSync(sourceImagePath)) {
+                        // Copy the file to archived folder
+                        fs.copyFileSync(sourceImagePath, path.join(archivedDir, filename));
+                        console.log(`Copied image to archive: ${path.join(archivedDir, filename)}`);
+                        
+                        // Delete the original file
+                        fs.unlinkSync(sourceImagePath);
+                        console.log(`Deleted original image: ${sourceImagePath}`);
+                    } else {
+                        console.log(`Image not found at ${sourceImagePath}`);
+                        
+                        // Try an alternative path construction if the first one failed
+                        const altSourcePath = path.join(__dirname, imagePath);
+                        console.log(`Trying alternative path: ${altSourcePath}`);
+                        
+                        if (fs.existsSync(altSourcePath)) {
+                            // Copy the file to archived folder
+                            fs.copyFileSync(altSourcePath, path.join(archivedDir, filename));
+                            console.log(`Copied image to archive: ${path.join(archivedDir, filename)}`);
+                            
+                            // Delete the original file
+                            fs.unlinkSync(altSourcePath);
+                            console.log(`Deleted original image: ${altSourcePath}`);
+                        } else {
+                            console.log(`Image not found at alternative path either: ${altSourcePath}`);
+                        }
+                    }
+                } catch (moveErr) {
+                    console.error(`Error archiving image ${imagePath}:`, moveErr);
+                }
+            });
+        } else {
+            console.log('No images to archive');
+        }
+        
         // Write the JSON data to the file
         console.log('Writing file...');
         fs.writeFileSync(filePath, JSON.stringify(productsData, null, 2));
@@ -56,7 +150,12 @@ app.post('/api/save-products', (req, res) => {
         }
         
         console.log('--- API: SAVE PRODUCTS - SUCCESS ---');
-        res.json({ success: true, message: 'Products saved successfully', path: filePath });
+        res.json({ 
+            success: true, 
+            message: 'Products saved successfully', 
+            path: filePath,
+            archivedImages: deletedImages.length
+        });
     } catch (error) {
         console.error('--- API: SAVE PRODUCTS - ERROR ---');
         console.error('Error saving products:', error);

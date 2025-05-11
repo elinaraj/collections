@@ -1,5 +1,5 @@
 {
-  "name": "mote_tracker",
+  "name": "elina_tracker",
   "version": "1.0.0",
   "description": "A simple webapp to manage product data and images",
   "main": "server.js",

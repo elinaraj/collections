@@ -429,7 +429,14 @@ async function saveAllChanges() {
         if (result.path) {
             console.log('Saved to path:', result.path);
         }
-        alert('Products saved successfully!');
+        
+        // Show message about archived images if any
+        let message = 'Products saved successfully!';
+        if (result.archivedImages && result.archivedImages > 0) {
+            message += ` ${result.archivedImages} deleted image(s) moved to archive folder.`;
+        }
+        
+        alert(message);
     })
     .catch(error => {
         console.error('Error saving products:', error);
