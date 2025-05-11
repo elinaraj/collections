@@ -209,6 +209,53 @@ textarea {
     resize: vertical;
 }
 
+/* Notification Styles */
+.notification-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.notification-pill {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transform: translateY(-20px);
+}
+
+.notification-pill.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.notification-pill.success {
+    background-color: #28a745;
+}
+
+.notification-pill.error {
+    background-color: #dc3545;
+}
+
+.notification-pill.warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.notification-pill.info {
+    background-color: #17a2b8;
+    color: white;
+}
+
 .form-actions {
     display: flex;
     justify-content: flex-end;

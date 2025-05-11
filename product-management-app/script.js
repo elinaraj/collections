@@ -510,19 +510,15 @@ function saveProductsToServer(productsToSave) {
         }
         
         // Show message about archived images if any
-        let message = 'Changes saved successfully!';
         if (result.archivedImages && result.archivedImages > 0) {
-            message += ` ${result.archivedImages} deleted image(s) moved to archive folder.`;
-        }
-        
-        // Only show alert if not triggered by image archiving
-        if (!result.silentSave) {
-            alert(message);
+            NotificationManager.success(`${result.archivedImages} deleted image(s) moved to archive folder.`);
+        } else if (!result.silentSave) {
+            NotificationManager.success('Changes saved successfully!');
         }
     })
     .catch(error => {
         console.error('Error saving products:', error);
-        alert('Failed to save changes. Please try again.');
+        NotificationManager.error('Failed to save changes. Please try again.');
     });
 }
 
@@ -557,11 +553,11 @@ function uploadProductImages(productId) {
     })
     .then(data => {
         console.log('Upload successful:', data);
-        alert('Images uploaded successfully!');
+        NotificationManager.success('Images uploaded successfully!');
     })
     .catch(error => {
         console.error('Error uploading images:', error);
-        alert(`Failed to upload images: ${error.message}`);
+        NotificationManager.error(`Failed to upload images: ${error.message}`);
     });
     
     // Clear the uploaded files after attempting upload
@@ -624,16 +620,16 @@ function archiveProductImages(images) {
         
         // Notify user about archived images
         if (result.archivedCount > 0) {
-            alert(`${result.archivedCount} image(s) moved to archive folder.`);
+            NotificationManager.success(`${result.archivedCount} image(s) moved to archive folder.`);
         } else {
-            console.warn('No images were archived.');
+            NotificationManager.info('No images were archived.');
         }
     })
     .catch(error => {
         console.error('Detailed error archiving images:', error);
         
         // More informative error message
-        alert(`Failed to archive product images: ${error.message}`);
+        NotificationManager.error(`Failed to archive product images: ${error.message}`);
     });
 }
 
