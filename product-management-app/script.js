@@ -64,7 +64,6 @@ function renderProductsTable() {
             <td>${imageHtml}</td>
             <td>${product.title}</td>
             <td>${product.category}</td>
-            <td>${product.description}</td>
             <td>${product.status}</td>
             <td>${product.condition}</td>
             <td>$${product.price.toFixed(2)}</td>
@@ -76,6 +75,7 @@ function renderProductsTable() {
                     <button class="delete-btn" data-id="${product.id}">Delete</button>
                 </div>
             </td>
+            <td>${product.description}</td>
         `;
         
         productsBody.appendChild(row);
@@ -138,12 +138,12 @@ function openEditModal(productId = null) {
     document.getElementById('edit-id').value = product.id;
     document.getElementById('edit-title').value = product.title;
     document.getElementById('edit-category').value = product.category;
-    document.getElementById('edit-description').value = product.description;
     document.getElementById('edit-status').value = product.status;
     document.getElementById('edit-condition').value = product.condition;
     document.getElementById('edit-price').value = product.price;
     document.getElementById('edit-tags').value = product.tags.join(', ');
     document.getElementById('edit-marketplace-link').value = product.marketplaceLink || '';
+    document.getElementById('edit-description').value = product.description;
     
     // Reset uploaded files for this product
     uploadedFiles[product.id] = [];
@@ -275,23 +275,32 @@ function handleImageUpload(e) {
 // Save product changes
 function saveProductChanges() {
     const productId = document.getElementById('edit-id').value;
+    const existingProduct = products.find(p => p.id === productId);
+    
     const updatedProduct = {
         id: productId,
         title: document.getElementById('edit-title').value,
         category: document.getElementById('edit-category').value,
-        description: document.getElementById('edit-description').value,
         status: document.getElementById('edit-status').value,
         condition: document.getElementById('edit-condition').value,
         price: parseFloat(document.getElementById('edit-price').value),
         tags: document.getElementById('edit-tags').value.split(',').map(tag => tag.trim()).filter(tag => tag !== ''),
-        images: editedImages[productId] || [],
-        marketplaceLink: document.getElementById('edit-marketplace-link').value.trim() || null
+        marketplaceLink: document.getElementById('edit-marketplace-link').value.trim() || null,
+        description: document.getElementById('edit-description').value,
+        images: [] // Will be populated below
     };
 
-    // Find existing product or create new one
-    const existingProductIndex = products.findIndex(p => p.id === productId);
-    
+    // Determine images to save
+    if (editedImages[productId] && editedImages[productId].length > 0) {
+        // Use edited images if available
+        updatedProduct.images = editedImages[productId];
+    } else if (existingProduct && existingProduct.images && existingProduct.images.length > 0) {
+        // Preserve existing images if no new images are added
+        updatedProduct.images = existingProduct.images;
+    }
+
     // Add or update the product
+    const existingProductIndex = products.findIndex(p => p.id === productId);
     if (existingProductIndex === -1) {
         products.push(updatedProduct);
     } else {
