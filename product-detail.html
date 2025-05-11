@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail - Elina's Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/product-detail.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="index.html">Elina's Tracker</a></h1>
+            <div id="resource-status" class="resource-status">
+                <span class="status-indicator"></span>
+                <span class="status-text">Checking resource availability...</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="back-link">
+            <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Products</a>
+        </div>
+        
+        <div id="product-detail-container" class="product-detail">
+            <div class="loading">Loading product details...</div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Elina's Tracker. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Templates -->
+    <template id="product-detail-template">
+        <div class="product-detail-content">
+            <div class="product-images">
+                <div class="main-image">
+                    <img src="" alt="">
+                </div>
+                <div class="image-thumbnails">
+                    <!-- Thumbnails will be inserted here dynamically -->
+                </div>
+            </div>
+            <div class="product-info">
+                <h2 class="product-title"></h2>
+                <div class="product-meta">
+                    <div class="product-category"></div>
+                    <div class="product-status"></div>
+                    <div class="product-condition"></div>
+                </div>
+                <div class="product-price"></div>
+                <div class="product-description"></div>
+                <div class="product-tags"></div>
+            </div>
+        </div>
+    </template>
+
+    <script src="js/data-service.js"></script>
+    <script src="js/product-detail.js"></script>
+</body>
+</html>

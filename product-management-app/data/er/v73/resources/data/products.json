@@ -1,0 +1,58 @@
+{
+  "products": [
+    {
+      "id": "p001",
+      "title": "Lavender Essential Oil - 10ml",
+      "category": "Home Goods",
+      "description": "https://www.facebook.com/marketplace/item/1946573826103667",
+      "status": "Available",
+      "condition": "New",
+      "price": 5,
+      "tags": [
+        "Essential Oil",
+        "Diffuser"
+      ],
+      "images": [
+        "resources/images/LavenderEssentialoil.jpg"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1946573826103667"
+    },
+    {
+      "id": "p002",
+      "title": "3 Lenses - HD Dashcam - 32GB",
+      "category": "Dashcam",
+      "description": "3 Lenses HD car dashcam(Front, Interior, Rear) with 32GB micro sd card, New sealed box\n\nhttps://www.facebook.com/marketplace/item/1807913350064321",
+      "status": "Available",
+      "condition": "New",
+      "price": 28,
+      "tags": [
+        "3 Lenses (Front",
+        "Interior",
+        "Rear)",
+        "HD",
+        "32GB Memory Card"
+      ],
+      "images": [
+        "resources/images/3LensDashCam32GB1.jpg"
+      ]
+    },
+    {
+      "id": "p003",
+      "title": "Bedsheet - 3 Pieces - King Size",
+      "category": "Beddings",
+      "description": "New 3 pieces King size Bedsheet/ Bedding set\n\nhttps://www.facebook.com/marketplace/item/1381122876268408",
+      "status": "Available",
+      "condition": "New",
+      "price": 25,
+      "tags": [
+        "Bedsheet",
+        "3pcs",
+        "King Size"
+      ],
+      "images": [
+        "resources/images/Bedsheet1.jpg",
+        "resources/images/Bedsheet2.jpg"
+      ]
+    }
+  ]
+}

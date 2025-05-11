@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Product Manager</h1>
+        </header>
+        
+        <main>
+            <div class="controls">
+                <button id="add-product">Add New Product</button>
+                <button id="save-all">Save All Changes</button>
+            </div>
+            
+            <div class="table-container">
+                <table id="products-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Condition</th>
+                            <th>Price</th>
+                            <th>Tags</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-body">
+                        <!-- Products will be loaded dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Product Edit Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Product</h2>
+            <form id="edit-form">
+                <input type="hidden" id="edit-id">
+                
+                <div class="form-group">
+                    <label for="edit-title">Title:</label>
+                    <input type="text" id="edit-title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-category">Category:</label>
+                    <input type="text" id="edit-category" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-description">Description:</label>
+                    <textarea id="edit-description" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-status">Status:</label>
+                    <select id="edit-status">
+                        <option value="Available">Available</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Sold">Sold</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-condition">Condition:</label>
+                    <select id="edit-condition">
+                        <option value="New">New</option>
+                        <option value="Used">Used</option>
+                        <option value="Refurbished">Refurbished</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-price">Price:</label>
+                    <input type="number" id="edit-price" step="0.01" min="0" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-tags">Tags (comma separated):</label>
+                    <input type="text" id="edit-tags" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-marketplace-link">Marketplace Link:</label>
+                    <input type="url" id="edit-marketplace-link" placeholder="https://www.facebook.com/marketplace/item/...">
+                </div>
+                
+                <div class="form-group">
+                    <label>Images:</label>
+                    <div id="image-preview"></div>
+                    <div class="image-upload">
+                        <input type="file" id="image-upload" accept="image/*" multiple>
+                        <label for="image-upload">Add Images</label>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit">Save Changes</button>
+                    <button type="button" id="cancel-edit">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

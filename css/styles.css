@@ -1,0 +1,360 @@
+/* Global Styles */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --accent-color: #e74c3c;
+    --light-color: #ecf0f1;
+    --dark-color: #2c3e50;
+    --text-color: #333;
+    --border-radius: 8px;
+    --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+    --success-color: #27ae60;
+    --warning-color: #f39c12;
+    --error-color: #e74c3c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #f9f9f9;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styles */
+header {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 20px 0;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+header a {
+    color: white;
+}
+
+/* Resource Status Styles */
+.resource-status {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--warning-color);
+}
+
+.status-indicator.success {
+    background-color: var(--success-color);
+}
+
+.status-indicator.error {
+    background-color: var(--error-color);
+}
+
+/* Search Container Styles */
+.search-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 20px;
+}
+
+.search-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.search-row:last-child {
+    margin-bottom: 0;
+    justify-content: center;
+}
+
+.search-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.search-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.search-group input,
+.search-group select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+#reset-button {
+    background-color: #95a5a6;
+}
+
+#reset-button:hover {
+    background-color: #7f8c8d;
+}
+
+/* Product Count */
+.product-count {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: var(--secondary-color);
+}
+
+.product-count span {
+    font-weight: bold;
+}
+
+/* Products Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* Product Card Styles */
+.product-card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* Creates a 1:1 aspect ratio */
+    overflow: hidden;
+}
+
+.product-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.05);
+}
+
+.product-info {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+}
+
+.product-category {
+    font-size: 14px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+.product-status-condition {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.product-status, .product-condition {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.product-status {
+    background-color: #f0f0f0;
+}
+
+.product-status.Available {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.product-status.Pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.product-status.Sold {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.product-condition {
+    background-color: #e2e3e5;
+    color: #383d41;
+}
+
+.product-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+    margin-top: auto;
+}
+
+.product-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.tag {
+    font-size: 12px;
+    background-color: #f1f1f1;
+    padding: 3px 8px;
+    border-radius: 3px;
+    color: var(--dark-color);
+}
+
+/* Loading State */
+.loading {
+    text-align: center;
+    padding: 40px;
+    font-size: 18px;
+    color: var(--secondary-color);
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Back Link */
+.back-link {
+    margin-bottom: 20px;
+}
+
+.back-link a {
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+    color: var(--primary-color);
+}
+
+.back-link i {
+    margin-right: 5px;
+}
+
+/* Error Message */
+.error-message {
+    text-align: center;
+    padding: 40px;
+    font-size: 18px;
+    color: var(--accent-color);
+}
+
+/* No Products Message */
+.no-products {
+    text-align: center;
+    padding: 40px;
+    font-size: 18px;
+    color: var(--secondary-color);
+    grid-column: 1 / -1;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .search-row {
+        flex-direction: column;
+    }
+    
+    .search-group {
+        width: 100%;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .product-image {
+        height: 180px;
+    }
+}

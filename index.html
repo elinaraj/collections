@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elina's Tracker - Product Navigation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Elina's Tracker</h1>
+            <div id="resource-status" class="resource-status">
+                <span class="status-indicator"></span>
+                <span class="status-text">Checking resource availability...</span>
+            </div>
+            <div class="search-container">
+                <div class="search-row">
+                    <div class="search-group">
+                        <label for="search-term">Search:</label>
+                        <input type="text" id="search-term" placeholder="Search products...">
+                    </div>
+                    <div class="search-group">
+                        <label for="category-filter">Category:</label>
+                        <select id="category-filter">
+                            <option value="">All Categories</option>
+                            <!-- Categories will be populated dynamically -->
+                        </select>
+                    </div>
+                </div>
+                <div class="search-row">
+                    <div class="search-group">
+                        <label for="status-filter">Status:</label>
+                        <select id="status-filter">
+                            <option value="">All Statuses</option>
+                            <!-- Statuses will be populated dynamically -->
+                        </select>
+                    </div>
+                    <div class="search-group">
+                        <label for="condition-filter">Condition:</label>
+                        <select id="condition-filter">
+                            <option value="">All Conditions</option>
+                            <!-- Conditions will be populated dynamically -->
+                        </select>
+                    </div>
+                </div>
+                <div class="search-row">
+                    <div class="search-group">
+                        <label for="price-min">Min Price:</label>
+                        <input type="number" id="price-min" placeholder="Min">
+                    </div>
+                    <div class="search-group">
+                        <label for="price-max">Max Price:</label>
+                        <input type="number" id="price-max" placeholder="Max">
+                    </div>
+                </div>
+                <div class="search-row">
+                    <button id="search-button">Search</button>
+                    <button id="reset-button">Reset Filters</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="product-count" class="product-count">
+            <span>0</span> products found
+        </div>
+        <div id="products-container" class="products-grid">
+            <!-- Product cards will be inserted here dynamically -->
+            <div class="loading">Loading products...</div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Elina's Tracker. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Templates -->
+    <template id="product-card-template">
+        <div class="product-card">
+            <div class="product-image">
+                <img src="" alt="">
+            </div>
+            <div class="product-info">
+                <h3 class="product-title"></h3>
+                <p class="product-category"></p>
+                <div class="product-status-condition">
+                    <span class="product-status"></span>
+                    <span class="product-condition"></span>
+                </div>
+                <p class="product-price"></p>
+                <div class="product-tags"></div>
+            </div>
+        </div>
+    </template>
+
+    <script src="js/data-service.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
