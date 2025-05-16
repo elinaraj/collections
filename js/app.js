@@ -109,6 +109,23 @@ document.addEventListener('DOMContentLoaded', async () => {
      * Set up event listeners
      */
     function setupEventListeners() {
+        // Search container toggle button
+        const searchContainer = document.querySelector('.search-container');
+        const toggleSearchButton = document.getElementById('toggle-search');
+        
+        toggleSearchButton.addEventListener('click', () => {
+            searchContainer.classList.toggle('collapsed');
+            
+            // Update button text
+            const isCollapsed = searchContainer.classList.contains('collapsed');
+            toggleSearchButton.innerHTML = isCollapsed 
+                ? '<i class="fas fa-search"></i> Show Search Filters' 
+                : '<i class="fas fa-times"></i> Hide Search Filters';
+        });
+
+        // Collapse search container on initial load
+        searchContainer.classList.add('collapsed');
+        toggleSearchButton.innerHTML = '<i class="fas fa-search"></i> Show Search Filters';
         // Search button
         searchButton.addEventListener('click', handleSearch);
         
