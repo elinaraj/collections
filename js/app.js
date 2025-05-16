@@ -14,8 +14,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const searchButton = document.getElementById('search-button');
     const resetButton = document.getElementById('reset-button');
     const productCardTemplate = document.getElementById('product-card-template');
-    const resourceStatusIndicator = document.getElementById('resource-status').querySelector('.status-indicator');
-    const resourceStatusText = document.getElementById('resource-status').querySelector('.status-text');
 
     // Initialize
     init();
@@ -25,18 +23,8 @@ document.addEventListener('DOMContentLoaded', async () => {
      */
     async function init() {
         try {
-            // Show loading state for resource status
-            updateResourceStatus('loading', 'Checking resource availability...');
-            
             // Fetch products
             await dataService.fetchProducts();
-            
-            // Update resource status based on which source was used
-            if (dataService.currentResourceBase === dataService.baseResourceUrl) {
-                updateResourceStatus('success', 'Using remote resources');
-            } else {
-                updateResourceStatus('success', 'Using local resources');
-            }
             
             // Populate filter dropdowns
             populateFilterDropdowns();
@@ -48,29 +36,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             setupEventListeners();
         } catch (error) {
             console.error('Initialization error:', error);
-            updateResourceStatus('error', 'Failed to load resources');
             showError('Failed to load products. Please try again later.');
         }
-    }
-
-    /**
-     * Update resource status indicator
-     * @param {string} status - Status type: 'loading', 'success', or 'error'
-     * @param {string} message - Status message to display
-     */
-    function updateResourceStatus(status, message) {
-        // Remove all status classes
-        resourceStatusIndicator.classList.remove('success', 'error');
-        
-        // Add appropriate status class
-        if (status === 'success') {
-            resourceStatusIndicator.classList.add('success');
-        } else if (status === 'error') {
-            resourceStatusIndicator.classList.add('error');
-        }
-        
-        // Update status text
-        resourceStatusText.textContent = message;
     }
 
     /**

@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elina's Tracker - Product Navigation</title>
+    <link rel="icon" href="logo.jpg" type="image/jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Elina's Tracker</h1>
-            <div id="resource-status" class="resource-status">
-                <span class="status-indicator"></span>
-                <span class="status-text">Checking resource availability...</span>
+            <div class="header-logo-title">
+                <img src="logo.jpg" alt="Elina's Tracker Logo" class="site-logo">
+                <h1>Elina's Tracker</h1>
             </div>
             <div class="search-toggle">
                 <button id="toggle-search">
@@ -94,8 +94,8 @@
             </div>
             <div class="product-info">
                 <h3 class="product-title"></h3>
-                <p class="product-category"></p>
-                <div class="product-status-condition">
+                <div class="product-meta">
+                    <span class="product-category"></span>
                     <span class="product-status"></span>
                     <span class="product-condition"></span>
                 </div>
@@ -125,9 +125,9 @@
                         <div class="product-description"></div>
                         <div class="product-tags"></div>
                         <div class="product-meta">
-                            <div class="product-category"></div>
-                            <div class="product-status"></div>
-                            <div class="product-condition"></div>
+                            <span class="product-category"></span>
+                            <span class="product-status"></span>
+                            <span class="product-condition"></span>
                         </div>
                     </div>
                 </div>
