@@ -105,6 +105,36 @@
         </div>
     </template>
 
+    <!-- Product Details Popup Template -->
+    <template id="product-popup-template">
+        <div class="product-popup-overlay">
+            <div class="product-popup-content">
+                <button class="popup-close-btn"><i class="fas fa-times"></i></button>
+                <div class="product-detail-content">
+                    <div class="product-images">
+                        <div class="main-image">
+                            <img src="" alt="">
+                        </div>
+                        <div class="image-thumbnails">
+                            <!-- Thumbnails will be inserted here dynamically -->
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h2 class="product-title"></h2>
+                        <div class="product-price"></div>
+                        <div class="product-description"></div>
+                        <div class="product-tags"></div>
+                        <div class="product-meta">
+                            <div class="product-category"></div>
+                            <div class="product-status"></div>
+                            <div class="product-condition"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
     <script src="js/data-service.js"></script>
     <script src="js/app.js"></script>
 </body>

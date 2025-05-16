@@ -205,6 +205,200 @@ button {
     transition: var(--transition);
 }
 
+/* Product Popup Styles */
+.product-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.product-popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.product-popup-content {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 1000px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: popupFadeIn 0.3s ease;
+}
+
+@keyframes popupFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.popup-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--dark-color);
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.popup-close-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Product Detail Content Styles */
+.product-detail-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Spacing between product tags and meta */
+.product-tags {
+    margin-bottom: 20px;
+}
+
+/* Pill styles for category, status, condition */
+.product-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.product-meta .pill {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+/* Category pill */
+.product-meta .product-category.pill {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+}
+
+/* Status pills */
+.product-meta .product-status.pill.available {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.product-meta .product-status.pill.pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.product-meta .product-status.pill.sold {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Condition pill */
+.product-meta .product-condition.pill {
+    background-color: #e2e3e5;
+    color: #383d41;
+}
+
+/* Marketplace button in popup */
+.product-popup-content .marketplace-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #4267B2; /* Facebook blue */
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    transition: var(--transition);
+}
+
+.product-popup-content .marketplace-link:hover {
+    background-color: #365899; /* Darker Facebook blue */
+    text-decoration: none;
+    color: white;
+}
+
+/* Product Images */
+.product-images {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+}
+
+.main-image {
+    width: 100%;
+    height: 400px;
+    margin-bottom: 20px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.image-thumbnails {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.image-thumbnail {
+    width: 80px;
+    height: 80px;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.image-thumbnail.active {
+    border-color: var(--primary-color);
+}
+
+.image-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 button:hover {
     background-color: #2980b9;
 }

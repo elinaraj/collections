@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         product.tags.forEach(tag => {
             const tagElement = document.createElement('span');
             tagElement.classList.add('tag');
-            tagElement.textContent = tag;
+            tagElement.textContent = formatTag(tag);
             tagsContainer.appendChild(tagElement);
         });
         
@@ -271,9 +271,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         productCard.querySelector('.product-info').appendChild(marketplaceButton);
         
-        // Add click event to navigate to detail page
+        // Add click event to open product detail popup
         productCard.addEventListener('click', () => {
-            window.location.href = `product-detail.html?id=${product.id}`;
+            openProductPopup(product.id);
         });
         
         return productCard;
@@ -306,7 +306,21 @@ document.addEventListener('DOMContentLoaded', async () => {
      * @returns {string} Formatted price
      */
     function formatPrice(price) {
-        return `$${price.toFixed(2)}`;
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2
+        }).format(price);
+    }
+
+    /**
+     * Format tag by removing square-bracketed prefix
+     * @param {string} tag - Original tag text (e.g. "[1] Bedsheet Set")
+     * @returns {string} Formatted tag (e.g. "Bedsheet Set")
+     */
+    function formatTag(tag) {
+        // Remove anything between square brackets at the start of the tag, including the brackets and any space after
+        return tag.replace(/^\[.*?\]\s*/, '');
     }
 
     /**
@@ -314,9 +328,154 @@ document.addEventListener('DOMContentLoaded', async () => {
      * @param {Event} e - Input event
      */
     function validateNumberInput(e) {
-        const value = e.target.value;
-        if (value && isNaN(parseFloat(value))) {
-            e.target.value = e.target.value.replace(/[^\d.-]/g, '');
+        if (!/^\d*\.?\d*$/.test(e.target.value)) {
+            // Remove any non-numeric characters except for decimal point
+            e.target.value = e.target.value.replace(/[^\d.]/g, '');
+            // Ensure only one decimal point
+            e.target.value = e.target.value.replace(/(\..*)\./g, '$1');
         }
+    }
+
+    /**
+     * Open product popup with details
+     * @param {string} productId - ID of the product to display
+     */
+    async function openProductPopup(productId) {
+        try {
+            // Find the product by ID
+            const product = dataService.products.find(p => p.id === productId);
+            if (!product) {
+                console.error('Product not found:', productId);
+                return;
+            }
+
+            // Clone the popup template
+            const popupTemplate = document.getElementById('product-popup-template');
+            const popup = popupTemplate.content.cloneNode(true);
+            const popupOverlay = popup.querySelector('.product-popup-overlay');
+            const popupContent = popup.querySelector('.product-popup-content');
+            
+            // Populate product details
+            const imgElement = popup.querySelector('.main-image img');
+            if (product.images && product.images.length > 0) {
+                const imageUrl = dataService.getResourceUrl(product.images[0]);
+                imgElement.src = imageUrl;
+                imgElement.alt = product.title;
+                
+                // Add thumbnails if there are multiple images
+                const thumbnailsContainer = popup.querySelector('.image-thumbnails');
+                if (product.images.length > 1) {
+                    product.images.forEach((imagePath, index) => {
+                        const thumbnail = document.createElement('div');
+                        thumbnail.classList.add('image-thumbnail');
+                        if (index === 0) thumbnail.classList.add('active');
+                        
+                        const thumbImg = document.createElement('img');
+                        thumbImg.src = dataService.getResourceUrl(imagePath);
+                        thumbImg.alt = `${product.title} - Image ${index + 1}`;
+                        
+                        thumbnail.appendChild(thumbImg);
+                        thumbnailsContainer.appendChild(thumbnail);
+                        
+                        // Add click event to switch main image
+                        thumbnail.addEventListener('click', () => {
+                            // Update main image
+                            imgElement.src = dataService.getResourceUrl(imagePath);
+                            
+                            // Update active thumbnail
+                            thumbnailsContainer.querySelectorAll('.image-thumbnail').forEach(thumb => {
+                                thumb.classList.remove('active');
+                            });
+                            thumbnail.classList.add('active');
+                        });
+                    });
+                }
+            } else {
+                imgElement.src = dataService.getResourceUrl('resources/images/placeholder.jpg');
+                imgElement.alt = 'No image available';
+            }
+            
+            // Populate text content
+            popup.querySelector('.product-title').textContent = product.title;
+            
+            // Style category, status, and condition as pills
+            const categoryElement = popup.querySelector('.product-category');
+            categoryElement.textContent = capitalizeFirstLetter(product.category);
+            categoryElement.classList.add('pill');
+            
+            const statusElement = popup.querySelector('.product-status');
+            statusElement.textContent = product.status;
+            statusElement.classList.add('pill', product.status.toLowerCase());
+            
+            const conditionElement = popup.querySelector('.product-condition');
+            conditionElement.textContent = product.condition;
+            conditionElement.classList.add('pill');
+            
+            popup.querySelector('.product-price').textContent = formatPrice(product.price);
+            
+            // Add description if available
+            const descriptionElement = popup.querySelector('.product-description');
+            if (product.description) {
+                descriptionElement.textContent = product.description;
+            } else {
+                descriptionElement.textContent = 'No description available.';
+            }
+            
+            // Create Marketplace Link button (same as in product cards)
+            const marketplaceButton = document.createElement('a');
+            marketplaceButton.classList.add('marketplace-link');
+            marketplaceButton.href = product.marketplaceLink || 'https://www.facebook.com/marketplace/profile/100071955871730';
+            marketplaceButton.target = '_blank';
+            marketplaceButton.innerHTML = '<i class="fab fa-facebook"></i> View on Marketplace';
+            
+            // Add marketplace button after description
+            descriptionElement.insertAdjacentElement('afterend', marketplaceButton);
+            
+            // Add tags
+            const tagsContainer = popup.querySelector('.product-tags');
+            product.tags.forEach(tag => {
+                const tagElement = document.createElement('span');
+                tagElement.classList.add('tag');
+                tagElement.textContent = formatTag(tag);
+                tagsContainer.appendChild(tagElement);
+            });
+            
+            // Close button event
+            const closeBtn = popup.querySelector('.popup-close-btn');
+            closeBtn.addEventListener('click', () => {
+                closeProductPopup(popupOverlay);
+            });
+            
+            // Close on click outside of content
+            popupOverlay.addEventListener('click', (e) => {
+                if (e.target === popupOverlay) {
+                    closeProductPopup(popupOverlay);
+                }
+            });
+            
+            // Add the popup to the document
+            document.body.appendChild(popup);
+            
+            // Show the popup with a small delay for the transition to work
+            setTimeout(() => {
+                popupOverlay.classList.add('active');
+            }, 10);
+            
+        } catch (error) {
+            console.error('Error opening product popup:', error);
+        }
+    }
+    
+    /**
+     * Close product popup
+     * @param {HTMLElement} popupOverlay - The popup overlay element to close
+     */
+    function closeProductPopup(popupOverlay) {
+        popupOverlay.classList.remove('active');
+        
+        // Remove popup after transition
+        setTimeout(() => {
+            popupOverlay.parentNode.removeChild(popupOverlay);
+        }, 300);
     }
 });
