@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             displayProductDetails(product);
             
             // Update page title with product name
-            document.title = `${product.title} - Elina Tracker`;
+            document.title = `${product.title} - Elina's Collections`;
         } catch (error) {
             console.error('Initialization error:', error);
             updateResourceStatus('error', 'Failed to load resources');

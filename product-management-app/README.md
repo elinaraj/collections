@@ -10,7 +10,7 @@ A simple web application to manage product data and images. This application all
 ## Project Structure
 
 ```
-elina_tracker2/
+elina_collections/
 ├── data/
 │   └── er/
 │       └── v73/

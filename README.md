@@ -1,12 +1,12 @@
-# Elina's Tracker
+# Elina's Collections
 
 A responsive product navigation web application for managing and displaying product information.
 
 ## Overview
 
-Elina's Tracker is a lightweight, responsive web application designed to display and filter product information. The application supports less than 1000 products and provides search and filtering capabilities based on various product attributes.
+Elina's Collections is a lightweight, responsive web application designed to display and filter product information. The application supports less than 1000 products and provides search and filtering capabilities based on various product attributes.
 
-![Elina's Tracker Screenshot]
+![Elina's Collections Screenshot]
 
 ## Features
 
@@ -48,7 +48,7 @@ Elina's Tracker is a lightweight, responsive web application designed to display
 1. Clone the repository:
    ```bash
    git clone <repository-url>
-   cd elina_tracker
+   cd elina_collections
    ```
 
 2. Open the `index.html` file in your web browser:
