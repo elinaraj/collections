@@ -2,19 +2,25 @@
   "products": [
     {
       "id": "p001",
-      "title": "Lavender Essential Oil - 10ml",
-      "category": "Home Goods",
+      "title": "Drone - 2 Cameras - 1 Rechargeable Battery",
+      "category": "Drone",
       "status": "Available",
       "condition": "New",
-      "price": 5,
+      "price": 35,
       "tags": [
-        "[1] Diffuser",
-        "[2] Essential Oil"
+        "[1] 2 Cameras",
+        "[2] 1 Rechargeable Battery",
+        "[3] Grey",
+        "[3] Black",
+        "[3] Orange",
+        "[2] 2 Rechargeable Batteries",
+        "[2] 3 Rechargeable Batteries"
       ],
-      "marketplaceLink": "https://www.facebook.com/marketplace/item/1946573826103667",
-      "description": "Lavender Essential Oil - 10ml",
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1026671929046666",
+      "description": "Perfect gift for a beginner \n\nComes with all the required accessories, wifi, app control, remote control, phone holder, videography \n\n+$5 for additional rechargeable batteries.\n\nAvailable in Black, Grey and Orange colours.",
       "images": [
-        "resources/images/LavenderEssentialoil.jpg"
+        "resources/images/drone---2-cameras---1-rechargeable-battery-1946573826103667-0-1747528243.jpg",
+        "resources/images/drone---2-cameras---1-rechargeable-battery-1946573826103667-1-1747528247.jpg"
       ]
     },
     {
@@ -352,7 +358,7 @@
       "category": "Beddings",
       "status": "Available",
       "condition": "New",
-      "price": 0,
+      "price": 35,
       "tags": [
         "[1] Duvet Cover Set",
         "[2] Queen Size",
@@ -763,6 +769,172 @@
       "description": "3 pieces King size Duvet Cover set, New in package, Perfect Mother's Day present",
       "images": [
         "resources/images/duvet-cover-set---3-pieces---king-size---reversible-671576778962589-0-1747005820.jpg"
+      ]
+    },
+    {
+      "id": "p036",
+      "title": "100pcs - Minecraft - Magnetic Block",
+      "category": "Toys",
+      "status": "Available",
+      "condition": "New",
+      "price": 30,
+      "tags": [
+        "[1] Magnetic Blocks",
+        "[2] 100 pcs"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/656840383846410",
+      "description": "100 pieces New Magnetic Building Blocks set/ Minecraft Building blocks, New in box.",
+      "images": [
+        "resources/images/100pcs---minecraft---magnetic-block-no-marketplace-link-0-1747528992.jpg"
+      ]
+    },
+    {
+      "id": "p037",
+      "title": "Marble Run - 142 pieces - 30 marbles",
+      "category": "Toys",
+      "status": "Available",
+      "condition": "New",
+      "price": 30,
+      "tags": [
+        "[1] Marble Run",
+        "[2] 142 pcs",
+        "[3] 30 Marbles"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1360809438496865",
+      "description": "142 pieces Marble Run set, New in box, includes 30 marbles",
+      "images": [
+        "resources/images/-no-marketplace-link-0-1747529169.jpg",
+        "resources/images/-no-marketplace-link-1-1747529173.jpg",
+        "resources/images/-no-marketplace-link-2-1747529177.jpg"
+      ]
+    },
+    {
+      "id": "p038",
+      "title": "Dashcam - 1080p Full HD - 2 Cameras - 64GB Card",
+      "category": "Dashcam",
+      "status": "Available",
+      "condition": "New",
+      "price": 40,
+      "tags": [
+        "[1] 2 Lenses",
+        "[2] 64GB SD Card",
+        "[3] HD Recording",
+        "[4A] Front Camera",
+        "[4C] Rear Camera"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/663320016550094",
+      "description": "1080p Full HD Dual Camera(Front & Rear Mirror Dashcam with 64GB card, fits most vehicles\n",
+      "images": [
+        "resources/images/dashcam---1080p-full-hd---2-cameras---64gb-card-663320016550094-0-1747529932.jpg",
+        "resources/images/dashcam---1080p-full-hd---2-cameras---64gb-card-663320016550094-1-1747529935.jpg"
+      ]
+    },
+    {
+      "id": "p039",
+      "title": "Duvet Cover",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 30,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] King Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1413555409645337",
+      "description": "3 pieces King size Duvet Cover set, New in package, Perfect Mother's Day present",
+      "images": []
+    },
+    {
+      "id": "p040",
+      "title": "Duvet Cover Set - 3 Pieces - King or Queen Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 35,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] King Size",
+        "[2] Queen Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/680077734975411",
+      "description": "3 pieces King/ Queen size Duvet Cover set, Dark Grey\n\n\nQueen: $35\nKing: $40\n\n",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---king-or-queen-size-680077734975411-0-1747530285.jpg",
+        "resources/images/duvet-cover-set---3-pieces---king-or-queen-size-680077734975411-1-1747530288.jpg",
+        "resources/images/duvet-cover-set---3-pieces---king-or-queen-size-680077734975411-2-1747530292.jpg"
+      ]
+    },
+    {
+      "id": "p041",
+      "title": "Duvet Cover Set - 3 Pieces - King Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 40,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] King Size",
+        "[3] Polyester",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/736375265633458",
+      "description": "3 pieces King size Duvet Cover set, New in package, Perfect Mother's Day present\n",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---king-size-736375265633458-1-1747530377.jpg",
+        "resources/images/duvet-cover-set---3-pieces---king-size-736375265633458-2-1747530381.jpg"
+      ]
+    },
+    {
+      "id": "p042",
+      "title": "Duvet Cover Set - 3 Pieces - King Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 45,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[2] King Size",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/597998103295823",
+      "description": "Gorgeous 3 pieces King size Duvet Cover set, New in package, Perfect Mother's Day present\n",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---king-size-597998103295823-0-1747530497.jpg",
+        "resources/images/duvet-cover-set---3-pieces---king-size-597998103295823-1-1747530501.jpg",
+        "resources/images/duvet-cover-set---3-pieces---king-size-597998103295823-2-1747530504.jpg"
+      ]
+    },
+    {
+      "id": "p043",
+      "title": "Duvet Cover Set - 3 Pieces - Twin Size",
+      "category": "Beddings",
+      "status": "Available",
+      "condition": "New",
+      "price": 30,
+      "tags": [
+        "[1] Duvet Cover Set",
+        "[3] Polyester",
+        "[4] 3pcs",
+        "[5A] 1 Duvet Cover",
+        "[5B] 2 Pillowcases",
+        "[2] Twin Size"
+      ],
+      "marketplaceLink": "https://www.facebook.com/marketplace/item/1715042112739909",
+      "description": "3 pieces Twin/Twin XL Duvet cover set(1 duvet cover+ 2 pillowcases)\n",
+      "images": [
+        "resources/images/duvet-cover-set---3-pieces---twin-size-1715042112739909-0-1747530626.jpg"
       ]
     }
   ]
