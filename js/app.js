@@ -14,6 +14,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     const searchButton = document.getElementById('search-button');
     const resetButton = document.getElementById('reset-button');
     const productCardTemplate = document.getElementById('product-card-template');
+    
+    // Lazy loading configuration
+    const PRODUCTS_PER_BATCH = 12;  // Number of products to load per batch
+    let currentProducts = [];       // Array of currently filtered products
+    let loadedProductCount = 0;     // Counter for loaded products
+    let isLoading = false;          // Flag to prevent multiple load operations
 
     // Initialize
     init();
@@ -163,6 +169,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Clear existing products
         productsContainer.innerHTML = '';
         
+        // Reset lazy loading state
+        currentProducts = [...products]; // Make a copy of the products array
+        loadedProductCount = 0;
+        isLoading = false;
+        
         // Show message if no products found
         if (products.length === 0) {
             const noProductsElement = document.createElement('div');
@@ -172,11 +183,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
         
-        // Create product cards
-        products.forEach(product => {
-            const productCard = createProductCard(product);
-            productsContainer.appendChild(productCard);
-        });
+        // Create loading indicator
+        const loadingIndicator = createLoadingIndicator();
+        productsContainer.appendChild(loadingIndicator);
+        
+        // Load first batch of products
+        loadMoreProducts();
+        
+        // Set up intersection observer for infinite scrolling
+        setupIntersectionObserver();
     }
 
     /**
@@ -432,17 +447,92 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.error('Error opening product popup:', error);
         }
     }
+
+/**
+ * Close product popup
+ * @param {HTMLElement} popupOverlay - The popup overlay element to close
+ */
+function closeProductPopup(popupOverlay) {
+    if (!popupOverlay) return;
     
-    /**
-     * Close product popup
-     * @param {HTMLElement} popupOverlay - The popup overlay element to close
-     */
-    function closeProductPopup(popupOverlay) {
-        popupOverlay.classList.remove('active');
+    // Add closing animation class
+    popupOverlay.classList.add('closing');
+    
+    // Remove after animation completes
+    setTimeout(() => {
+        popupOverlay.remove();
+    }, 300);
+}
+
+/**
+ * Create a loading indicator element
+ * @returns {HTMLElement} Loading indicator element
+ */
+function createLoadingIndicator() {
+    const loadingElement = document.createElement('div');
+    loadingElement.classList.add('loading-indicator');
+    loadingElement.innerHTML = '<div class="spinner"></div><p>Loading more products...</p>';
+    loadingElement.id = 'loading-indicator';
+    return loadingElement;
+}
+
+/**
+ * Set up intersection observer for infinite scrolling
+ */
+function setupIntersectionObserver() {
+    const loadingIndicator = document.getElementById('loading-indicator');
+    
+    if (!loadingIndicator) return;
+    
+    const options = {
+        root: null, // Use viewport as root
+        rootMargin: '0px',
+        threshold: 0.1 // Trigger when 10% of the element is visible
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !isLoading && loadedProductCount < currentProducts.length) {
+                loadMoreProducts();
+            }
+        });
+    }, options);
+    
+    observer.observe(loadingIndicator);
+}
+
+/**
+ * Load more products
+ */
+function loadMoreProducts() {
+    if (isLoading || loadedProductCount >= currentProducts.length) return;
+    
+    isLoading = true;
+    
+    const start = loadedProductCount;
+    const end = Math.min(loadedProductCount + PRODUCTS_PER_BATCH, currentProducts.length);
+    const batch = currentProducts.slice(start, end);
+    
+    // Add a small delay to simulate loading (remove in production if not needed)
+    setTimeout(() => {
+        // Create product cards for this batch
+        batch.forEach(product => {
+            const productCard = createProductCard(product);
+            // Insert before the loading indicator
+            const loadingIndicator = document.getElementById('loading-indicator');
+            productsContainer.insertBefore(productCard, loadingIndicator);
+        });
         
-        // Remove popup after transition
-        setTimeout(() => {
-            popupOverlay.parentNode.removeChild(popupOverlay);
-        }, 300);
-    }
+        loadedProductCount += batch.length;
+        isLoading = false;
+        
+        // Hide loading indicator when all products are loaded
+        if (loadedProductCount >= currentProducts.length) {
+            const loadingIndicator = document.getElementById('loading-indicator');
+            if (loadingIndicator) {
+                loadingIndicator.style.display = 'none';
+            }
+        }
+    }, 300); // Small delay for smoother loading experience
+}
 });
