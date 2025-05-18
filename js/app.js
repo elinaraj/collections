@@ -61,21 +61,53 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // Statuses
         const statuses = dataService.getUniqueValues('status');
-        statuses.forEach(status => {
-            const option = document.createElement('option');
-            option.value = status;
-            option.textContent = status;
-            statusFilterSelect.appendChild(option);
-        });
+        const statusGroup = statusFilterSelect.closest('.search-group');
         
         // Conditions
         const conditions = dataService.getUniqueValues('condition');
-        conditions.forEach(condition => {
-            const option = document.createElement('option');
-            option.value = condition;
-            option.textContent = condition;
-            conditionFilterSelect.appendChild(option);
-        });
+        const conditionGroup = conditionFilterSelect.closest('.search-group');
+        
+        // Get the search row that contains both status and condition
+        const statusConditionRow = statusGroup.closest('.search-row');
+        
+        // Check if both status and condition have only one option each
+        if (statuses.length <= 1 && conditions.length <= 1) {
+            // Hide the entire row if both dropdowns would be hidden
+            statusConditionRow.style.display = 'none';
+        } else {
+            // Otherwise show the row
+            statusConditionRow.style.display = '';
+            
+            // Handle Status dropdown
+            if (statuses.length > 1) {
+                // Show the status filter dropdown and populate it
+                statusGroup.style.display = '';
+                statuses.forEach(status => {
+                    const option = document.createElement('option');
+                    option.value = status;
+                    option.textContent = status;
+                    statusFilterSelect.appendChild(option);
+                });
+            } else {
+                // Hide the status filter dropdown if there's only one option
+                statusGroup.style.display = 'none';
+            }
+            
+            // Handle Condition dropdown
+            if (conditions.length > 1) {
+                // Show the condition filter dropdown and populate it
+                conditionGroup.style.display = '';
+                conditions.forEach(condition => {
+                    const option = document.createElement('option');
+                    option.value = condition;
+                    option.textContent = condition;
+                    conditionFilterSelect.appendChild(option);
+                });
+            } else {
+                // Hide the condition filter dropdown if there's only one option
+                conditionGroup.style.display = 'none';
+            }
+        }
     }
 
     /**
